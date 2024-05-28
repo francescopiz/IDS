@@ -1,26 +1,27 @@
 package com.unicam.ingdelsoftware.models;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contenuto {
     private String testo;
-    private List<File> fileMultimediali;
-    private final String id;
+    private final List<File> fileMultimediali;
+    private final int id;
 
-    public Contenuto(String id, String testo, List<File> fileMultimediali) {
+    public Contenuto(int id, String testo, List<File> fileMultimediali) {
         this.id=id;
         this.testo = testo;
         this.fileMultimediali = fileMultimediali;
     }
-    public Contenuto(String id, String testo) {
+    public Contenuto(int id, String testo) {
         this.id = id;
         this.testo = testo;
-        this.fileMultimediali = null;
+        this.fileMultimediali = new ArrayList<>();
     }
-    public Contenuto(String id, List<File> fileMultimediali) {
+    public Contenuto(int id, List<File> fileMultimediali) {
         this.id = id;
-        this.testo=null;
+        this.testo="";
         this.fileMultimediali = fileMultimediali;
     }
 
@@ -35,14 +36,15 @@ public class Contenuto {
     public List<File> getFileMultimediali() {
         return fileMultimediali;
     }
-    public void addFileMultimediale(File fileMultimediale) {
-        this.fileMultimediali.add(fileMultimediale);
-    }
-    public void removeFileMultimediale(File fileMultimediale) {
-        this.fileMultimediali.remove(fileMultimediale);
-    }
 
-    public String getId() {
+    //public void addFileMultimediale(File fileMultimediale) {
+    //    this.fileMultimediali.add(fileMultimediale);
+    //}
+    //public void removeFileMultimediale(File fileMultimediale) {
+    //    this.fileMultimediali.remove(fileMultimediale);
+    //}
+
+    public int getId() {
         return id;
     }
 }

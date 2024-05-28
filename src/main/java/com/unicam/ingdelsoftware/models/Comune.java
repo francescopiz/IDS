@@ -2,17 +2,17 @@ package com.unicam.ingdelsoftware.models;
 
 public class Comune {
     private String nome;
-    private String id;
+    private int id;
     private String provincia;
-    private Posizione posizione;
-    public Comune(String nome, String id, String provincia, Posizione posizione) {
+    private POI POIComune;
+    public Comune(String nome, int id, String provincia, POI posizione) {
         this.nome = nome;
         this.id = id;
         this.provincia = provincia;
-        this.posizione = posizione;
+        this.POIComune = posizione;
     }
     public Comune(){}
-    public String getId() {
+    public int getId() {
         return id;
     }
     public String getNome() {
@@ -21,28 +21,27 @@ public class Comune {
     public String getProvincia() {
         return provincia;
     }
-    public Posizione getPosizione() {
-        return posizione;
+    public POI getPOIComune() {
+        return POIComune;
     }
+
+
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Comune comune)) return false;
-        return id.equals(comune.getId());
+        return id == comune.getId();
     }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
     @Override
     public String toString() {
         return "Comune{" +
                 "nome='" + nome + '\'' +
                 ", provincia='" + provincia + '\'' +
                 ", id='" + id + '\'' +
-                ", " + posizione.toString() +
+                ", " + POIComune.toString() +
                 '}';
     }
 }
