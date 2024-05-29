@@ -5,26 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Contenuto {
+    private String nome;
     private String testo;
     private final List<File> fileMultimediali;
     private final int id;
 
-    public Contenuto(int id, String testo, List<File> fileMultimediali) {
+    public Contenuto(int id, String nome, String testo, List<File> fileMultimediali) {
         this.id=id;
+        this.nome = nome;
         this.testo = testo;
         this.fileMultimediali = fileMultimediali;
     }
-    public Contenuto(int id, String testo) {
+    public Contenuto(int id, String nome, String testo) {
         this.id = id;
+        this.nome = nome;
         this.testo = testo;
         this.fileMultimediali = new ArrayList<>();
     }
-    public Contenuto(int id, List<File> fileMultimediali) {
+    public Contenuto(int id, String nome, List<File> fileMultimediali) {
         this.id = id;
+        this.nome = nome;
         this.testo="";
         this.fileMultimediali = fileMultimediali;
     }
 
+    public String getNome() { return nome;}
+    public void setNome(String n){nome = n;}
     public String getTesto() {
         return testo;
     }
