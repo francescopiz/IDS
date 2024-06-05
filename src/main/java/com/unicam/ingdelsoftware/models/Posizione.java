@@ -26,6 +26,7 @@ public record Posizione(double x, double y) {
     public double y() {
         return this.y;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -33,6 +34,7 @@ public record Posizione(double x, double y) {
         Posizione that = (Posizione) o;
         return Double.compare(that.x, x) == 0 && Double.compare(that.y, y) == 0;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
