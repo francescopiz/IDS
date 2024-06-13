@@ -30,10 +30,10 @@ public class GestoreContenuti {
         List<Contenuto> listaContenuti = liste.getPOI(POIid).getElencoContenuti();
         if( listaContenuti.stream().anyMatch(x->x.getNome().equals(nome)))
             throw new IllegalArgumentException();
-        liste.addContenuto(POIId, nome, descrizione, file);
+        liste.changeNomeContenuto(POIid, contenutoId, nome );
     }
 
-    public void cambiaDescrizioneContenuto(int contenutoId, String nome ){
-        liste.setDescrizioneContenuto();
+    public void cambiaDescrizioneContenuto(int contenutoId, String descrizione ){
+        liste.setDescrizioneContenuto(contenutoId, descrizione);
     }
 }

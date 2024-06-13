@@ -1,15 +1,20 @@
 package com.unicam.ingdelsoftware.models;
 
+import com.unicam.ingdelsoftware.controllers.Contesto;
+
 public class Comune {
     private String nome;
     private int id;
     private String provincia;
-    private POI POIComune;
-    public Comune(String nome, int id, String provincia, POI posizione) {
+    //private POI POIComune;
+
+
+    // Se durante la creazione nel sistema
+    public Comune(String nome, int id, String provincia, Posizione posizione) {
         this.nome = nome;
         this.id = id;
         this.provincia = provincia;
-        this.POIComune = posizione;
+        /*this.POIComune =*/ Contesto.Gestore.GetGestorePOI().CreaPOI(nome, posizione); // TODO questo è il metodo che prende il singleton
     }
     public Comune(){}
     public int getId() {
@@ -21,9 +26,10 @@ public class Comune {
     public String getProvincia() {
         return provincia;
     }
-    public POI getPOIComune() {
-        return POIComune;
-    }
+
+    //public POI getPOIComune() {
+    //    return POIComune;
+    //}
 
 
 
@@ -41,7 +47,7 @@ public class Comune {
                 "nome='" + nome + '\'' +
                 ", provincia='" + provincia + '\'' +
                 ", id='" + id + '\'' +
-                ", " + POIComune.toString() +
+                //", " + POIComune.toString() +
                 '}';
     }
 }
