@@ -7,7 +7,7 @@ public class POI {
     private final int id;
     private String nome;
     private Posizione posizione;
-    private final List<Contenuto> elencoContenuti;
+    private final List<Contenuto> elencoContenuti;  //TODO va messo il codice dei contenuti o addirittura rimosso
 
     public POI(int id, String nome, Posizione posizione) {
         this.id = id;
@@ -15,7 +15,7 @@ public class POI {
         this.posizione = posizione;
         this.elencoContenuti = new ArrayList<Contenuto>();
     }
-
+    
     public int getId() {
         return id;
     }

@@ -3,6 +3,7 @@ package com.unicam.ingdelsoftware.controllers;
 import com.unicam.ingdelsoftware.models.*;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,15 @@ public class GestorePOI {
         if(poi != null)
             return false;
         liste.addPOI(nome, posizione);
+        return true;
+    }
+
+    public boolean CreaPOI(String nome, Posizione posizione, Date dataInizio, Date dataFine){
+        Comune comune = getComuneFromPosition(posizione);
+        POI poi = liste.getPOIInComune(comune.getId(), nome);
+        if(poi != null)
+            return false;
+        liste.addPOI(nome, posizione, dataInizio, dataFine);
         return true;
     }
 
