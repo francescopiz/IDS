@@ -3,14 +3,13 @@ package com.unicam.ingdelsoftware.models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class POI {
-    private final int id;
+public class POI extends Approvabile {
     private String nome;
     private Posizione posizione;
     private final List<Contenuto> elencoContenuti;
 
     public POI(int id, String nome, Posizione posizione) {
-        this.id = id;
+        super(id);
         this.nome = nome;
         this.posizione = posizione;
         this.elencoContenuti = new ArrayList<Contenuto>();
