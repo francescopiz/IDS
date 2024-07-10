@@ -8,7 +8,7 @@ import java.util.List;
 public class GruppoPOI {
     private String nome;
     private int id;
-    private List<POI> listaPOI;
+    protected List<POI> listaPOI;
 
     public GruppoPOI(String nome, int id, List<POI> listaPOI) {
         this.nome = nome;

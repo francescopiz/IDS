@@ -14,6 +14,7 @@ public class GestoreContenuti {
         this.liste = liste;
     }
 
+    //da mettere nel gestore POI
     public void addContenuto(int POIId, String nome, String descrizione, File[] file){
         POI poi = liste.getPOI(POIId);
         List<Contenuto> listaContenuti = poi.getElencoContenuti();
@@ -22,10 +23,12 @@ public class GestoreContenuti {
         liste.addContenuto(POIId, nome, descrizione, file);
     }
 
+    //da mettere nel gestore POI
     public void removeContenuto(int contenutoId) {
         liste.removeContenuto(contenutoId);
     }
 
+    //da mettere nel gestore POI
     public void cambiaNomeContenuto( int POIid ,int contenutoId, String nome ){
         List<Contenuto> listaContenuti = liste.getPOI(POIid).getElencoContenuti();
         if( listaContenuti.stream().anyMatch(x->x.getNome().equals(nome)))

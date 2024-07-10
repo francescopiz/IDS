@@ -60,6 +60,28 @@ public class GestorePOI {
             return false;
     }
 
+/*
+    public boolean IscrizioneEvento(int idEvento, int idUtente ){
+        POI poi = liste.getPOI(idEvento);
+        if(poi.getClass()!=Evento.class)
+            return false;
+        Evento evento = (Evento) poi;
+        List<Integer> listaIscritti = evento.getListaIscritti();
+        if(listaIscritti.contains(idUtente))
+            return false;
+        if(!evento.EventoPrivato())
+        {
+            return evento.iscriviUtente(idUtente);
+        }
+        List<Integer> listaAmmessi = evento.getListaAmmessi();
+        if(listaIscritti.contains(idUtente)) {
+            evento.iscriviUtente(idUtente);
+            return true;
+        }
+        return false;
+    }
+*/
+
     public boolean SetNome(int POIId, String nome){
         POI poi = liste.getPOI(POIId);
         Comune comune = liste.getComuneFromPosition(poi.getPosizione());
