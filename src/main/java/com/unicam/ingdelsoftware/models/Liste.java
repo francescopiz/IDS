@@ -6,6 +6,8 @@
 package com.unicam.ingdelsoftware.models;
 
 
+import com.unicam.ingdelsoftware.models.ruoli.Utente;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class Liste {
     private List<POI> listaPOI;
     private List<Contenuto> listaContenuti;
     private List<GruppoPOI> listaGruppiPOI;
+    private List<Utente> listaUtenti;
 
 
     public Liste(){
@@ -47,6 +50,41 @@ public class Liste {
                 return poi;
         }
         return null;
+    }
+
+    public boolean addUtente(Utente utente){
+        listaUtenti.add(utente);
+        return true;
+    }
+
+    public boolean removeUtente(int utenteID){
+        for (Utente utente: listaUtenti) {
+            if(utente.getId() == utenteID){
+                listaUtenti.remove(utente);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<Utente> getListaUtenti() {
+        return listaUtenti;
+    }
+
+    public Utente getUtente(int utenteID){
+        for (Utente utente: listaUtenti) {
+            if(utente.getId() == utenteID)
+                return utente;
+        }
+        return null;
+    }
+
+    public boolean containsUtente(int utenteID){
+        for (Utente utente: listaUtenti) {
+            if(utente.getId() == utenteID)
+                return true;
+        }
+        return false;
     }
 
     public POI getPOIInComune(int comuneID, String nomePOI){
