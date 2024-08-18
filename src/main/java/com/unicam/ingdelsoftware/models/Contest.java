@@ -13,7 +13,7 @@ public class Contest {
     private String nome;
     private Utente animatore;
 
-    private List<Integer> listaIscritti;
+    private List<Integer> listaIscritti;   //TODO vedere se vogliamo modificarlo
     private boolean privato;
     private List<Integer> utentiAmmessi;
 
