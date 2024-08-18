@@ -14,11 +14,14 @@ public class InterfacciaOSM {
 
     //per inizializzare le liste nella prova
     public void Inizializza(){
-        comuni.add( new Comune("Default", 0, "provincia Default" ,new Posizione(0,0))
+        comuni.add( new Comune("Default", 0, "provincia Default" ,new Posizione(0,0)));
     }
 
 
     public Comune GetComune(Posizione pos){
-        return new
+        Comune comune = comuni.get(0);
+        if(comune == null)
+            return new Comune();
+        return comune;
     }
 }

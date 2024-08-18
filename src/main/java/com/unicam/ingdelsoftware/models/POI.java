@@ -6,7 +6,7 @@ import java.util.List;
 public class POI extends Approvabile {
     private String nome;
     private Posizione posizione;
-    private final List<Contenuto> elencoContenuti;
+    private final List<Contenuto> elencoContenuti;  //TODO va messo il codice dei contenuti o addirittura rimosso
 
     public POI(int id, String nome, Posizione posizione) {
         super(id);
@@ -14,7 +14,7 @@ public class POI extends Approvabile {
         this.posizione = posizione;
         this.elencoContenuti = new ArrayList<Contenuto>();
     }
-
+    
     public int getId() {
         return id;
     }

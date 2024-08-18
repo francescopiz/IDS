@@ -3,10 +3,12 @@ package com.unicam.ingdelsoftware.models.ruoli;
 public class Utente {
     String userName;
     int id;
+    String email;
 
-    public Utente(String userName, int id) {
+    public Utente(String userName, int id, String email) {
         this.userName = userName;
         this.id = id;
+        this.email=email;
     }
 
     public String getNome() {
@@ -15,6 +17,10 @@ public class Utente {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "userName: " + userName + "/ id: " + id;
+        return "userName: " + userName + "/ id: " + id + "/ email: " + email;
     }
 
 }

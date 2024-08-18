@@ -3,6 +3,7 @@ package com.unicam.ingdelsoftware.controllers;
 import com.unicam.ingdelsoftware.models.*;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,15 @@ public class GestorePOI {
         if(poi != null)
             return false;
         liste.addPOI(nome, posizione);
+        return true;
+    }
+
+    public boolean CreaPOI(String nome, Posizione posizione, Date dataInizio, Date dataFine){
+        Comune comune = getComuneFromPosition(posizione);
+        POI poi = liste.getPOIInComune(comune.getId(), nome);
+        if(poi != null)
+            return false;
+        liste.addPOI(nome, posizione, dataInizio, dataFine);
         return true;
     }
 
@@ -49,6 +59,28 @@ public class GestorePOI {
         catch (Exception ignored){}
             return false;
     }
+
+/*
+    public boolean IscrizioneEvento(int idEvento, int idUtente ){
+        POI poi = liste.getPOI(idEvento);
+        if(poi.getClass()!=Evento.class)
+            return false;
+        Evento evento = (Evento) poi;
+        List<Integer> listaIscritti = evento.getListaIscritti();
+        if(listaIscritti.contains(idUtente))
+            return false;
+        if(!evento.EventoPrivato())
+        {
+            return evento.iscriviUtente(idUtente);
+        }
+        List<Integer> listaAmmessi = evento.getListaAmmessi();
+        if(listaIscritti.contains(idUtente)) {
+            evento.iscriviUtente(idUtente);
+            return true;
+        }
+        return false;
+    }
+*/
 
     public boolean SetNome(int POIId, String nome){
         POI poi = liste.getPOI(POIId);
