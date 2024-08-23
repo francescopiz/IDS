@@ -1,4 +1,4 @@
-package com.unicam.ingdelsoftware.models;
+package com.unicam.ingdelsoftware.approvabili;
 
 import java.util.Objects;
 

@@ -1,9 +1,8 @@
 package com.unicam.ingdelsoftware.controllers;
 
-import com.unicam.ingdelsoftware.controllers.GestorePOI;
 import com.unicam.ingdelsoftware.models.Comune;
 import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.models.Posizione;
+import com.unicam.ingdelsoftware.approvabili.Posizione;
 
 public class Contesto {
 

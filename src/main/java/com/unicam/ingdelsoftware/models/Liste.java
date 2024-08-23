@@ -6,9 +6,9 @@
 package com.unicam.ingdelsoftware.models;
 
 
+import com.unicam.ingdelsoftware.approvabili.*;
 import com.unicam.ingdelsoftware.models.ruoli.Utente;
 
-import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -152,10 +152,10 @@ public class Liste {
         poi.setNome(nome);
     }
 
-    public boolean addGruppoPOI(String nome, List<POI> listaPOI){
+    public boolean addGruppoPOI(List<POI> listaPOI){
         int x = listaPOI.size();
         //TODO c'è da fare un controllo se in quel comune esiste già un poi con quel nome
-        listaGruppiPOI.add(new GruppoPOI(nome, x ,listaPOI));
+        listaGruppiPOI.add(new GruppoPOI(listaPOI));
         return true;
     }
 

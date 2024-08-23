@@ -1,5 +1,8 @@
 package com.unicam.ingdelsoftware.controllers;
 
+import com.unicam.ingdelsoftware.approvabili.Contenuto;
+import com.unicam.ingdelsoftware.approvabili.POI;
+import com.unicam.ingdelsoftware.approvabili.Posizione;
 import com.unicam.ingdelsoftware.models.*;
 
 import java.io.File;
@@ -41,7 +44,7 @@ public class GestorePOI {
         Comune comune2 = liste.getComuneFromPosition( poi.getPosizione());
         if(comune1 == comune2)
             throw new IllegalArgumentException();
-        poi.setPosizione(pos); // devo farlo fare alla repository
+        //poi.setPosizione(pos); // devo farlo fare alla repository
     }
 
     public boolean AddContenuto(int POIId, String nome, String descrizione, File[] file){

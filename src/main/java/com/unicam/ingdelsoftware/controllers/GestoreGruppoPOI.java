@@ -1,8 +1,8 @@
 package com.unicam.ingdelsoftware.controllers;
 
-import com.unicam.ingdelsoftware.models.GruppoPOI;
+import com.unicam.ingdelsoftware.approvabili.GruppoPOI;
 import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.models.POI;
+import com.unicam.ingdelsoftware.approvabili.POI;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class GestoreGruppoPOI {
 
     public void SetNome(int POIId, String nome){
         GruppoPOI gruppo = liste.getGruppoPOI(POIId);
-        gruppo.setNome(nome);
+        //gruppo.setNome(nome);
         liste.Save();
     }
 
@@ -39,8 +39,8 @@ public class GestoreGruppoPOI {
         return false;
     }
 
-    public void creaGruppoPOI(ArrayList<POI> listaPOI, String nome){
-        liste.addGruppoPOI(nome, listaPOI);
+    public void creaGruppoPOI(ArrayList<POI> listaPOI){
+        liste.addGruppoPOI(listaPOI);
         liste.Save();
     }
 

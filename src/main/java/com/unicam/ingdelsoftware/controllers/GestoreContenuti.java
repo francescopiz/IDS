@@ -1,8 +1,8 @@
 package com.unicam.ingdelsoftware.controllers;
 
-import com.unicam.ingdelsoftware.models.Contenuto;
+import com.unicam.ingdelsoftware.approvabili.Contenuto;
 import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.models.POI;
+import com.unicam.ingdelsoftware.approvabili.POI;
 
 import java.io.File;
 import java.util.List;
