@@ -1,11 +1,11 @@
 package com.unicam.ingdelsoftware.models;
 
-import com.unicam.ingdelsoftware.approvabili.Contenuto;
+import com.unicam.ingdelsoftware.models.approvabili.Contenuto;
 
 public class Iscrizione {
     private int idUtente;
     private int idContest;
-    private com.unicam.ingdelsoftware.approvabili.Contenuto Contenuto;
+    private com.unicam.ingdelsoftware.models.approvabili.Contenuto Contenuto;
 
     public Iscrizione(int c, int u,  Contenuto co){
         idUtente = u;

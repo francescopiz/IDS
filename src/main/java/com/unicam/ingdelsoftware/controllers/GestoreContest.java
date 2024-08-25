@@ -1,6 +1,6 @@
 package com.unicam.ingdelsoftware.controllers;
 
-import com.unicam.ingdelsoftware.models.Contenuto;
+import com.unicam.ingdelsoftware.models.approvabili.Contenuto;
 import com.unicam.ingdelsoftware.models.Contest;
 import com.unicam.ingdelsoftware.models.Iscrizione;
 import com.unicam.ingdelsoftware.models.Liste;

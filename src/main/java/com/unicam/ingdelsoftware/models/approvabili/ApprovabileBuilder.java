@@ -1,6 +1,6 @@
-package com.unicam.ingdelsoftware.approvabili;
+package com.unicam.ingdelsoftware.models.approvabili;
 
-import com.unicam.ingdelsoftware.approvabili.itinerario.Itinerario;
+import com.unicam.ingdelsoftware.models.approvabili.itinerario.Itinerario;
 import com.unicam.ingdelsoftware.models.ruoli.Utente;
 import com.unicam.ingdelsoftware.tempo.Time;
 

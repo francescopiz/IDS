@@ -7,6 +7,7 @@ package com.unicam.ingdelsoftware.models;
 
 
 import com.unicam.ingdelsoftware.approvabili.*;
+import com.unicam.ingdelsoftware.models.approvabili.*;
 import com.unicam.ingdelsoftware.models.ruoli.Utente;
 
 import java.io.File;

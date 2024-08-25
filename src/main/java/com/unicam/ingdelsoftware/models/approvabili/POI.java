@@ -1,4 +1,4 @@
-package com.unicam.ingdelsoftware.approvabili;
+package com.unicam.ingdelsoftware.models.approvabili;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class POI extends Approvabile {
      * @param posizione   la posizione del POI
      * @param descrizione la descrizione del POI
      */
-    public POI(String nome, Posizione posizione, String descrizione) {
+    public POI(String nome, String descrizione, Posizione posizione) {
         super(nome, descrizione);
         this.posizione = posizione;
         this.elencoContenuti = new ArrayList<>();

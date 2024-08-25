@@ -1,6 +1,6 @@
 package com.unicam.ingdelsoftware.models;
 
-import com.unicam.ingdelsoftware.approvabili.Posizione;
+import com.unicam.ingdelsoftware.models.approvabili.Posizione;
 import com.unicam.ingdelsoftware.controllers.Contesto;
 
 public class Comune {

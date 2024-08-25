@@ -1,6 +1,6 @@
-package com.unicam.ingdelsoftware.approvabili.itinerario;
+package com.unicam.ingdelsoftware.models.approvabili.itinerario;
 
-import com.unicam.ingdelsoftware.approvabili.POI;
+import com.unicam.ingdelsoftware.models.approvabili.POI;
 
 import java.util.List;
 

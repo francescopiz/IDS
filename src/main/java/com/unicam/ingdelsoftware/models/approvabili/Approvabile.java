@@ -1,4 +1,4 @@
-package com.unicam.ingdelsoftware.approvabili;
+package com.unicam.ingdelsoftware.models.approvabili;
 
 /**
  * Classe astratta che rappresenta un elemento approvabile.

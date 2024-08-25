@@ -1,7 +1,7 @@
 package com.unicam.ingdelsoftware;
 
 import com.unicam.ingdelsoftware.models.Comune;
-import com.unicam.ingdelsoftware.approvabili.Posizione;
+import com.unicam.ingdelsoftware.models.approvabili.Posizione;
 
 import java.util.ArrayList;
 import java.util.List;

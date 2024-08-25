@@ -2,7 +2,7 @@ package com.unicam.ingdelsoftware.controllers;
 
 import com.unicam.ingdelsoftware.models.Comune;
 import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.approvabili.Posizione;
+import com.unicam.ingdelsoftware.models.approvabili.Posizione;
 
 public class Contesto {
 

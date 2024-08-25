@@ -1,8 +1,8 @@
 package com.unicam.ingdelsoftware.controllers;
 
-import com.unicam.ingdelsoftware.approvabili.GruppoPOI;
+import com.unicam.ingdelsoftware.models.approvabili.GruppoPOI;
 import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.approvabili.POI;
+import com.unicam.ingdelsoftware.models.approvabili.POI;
 
 import java.util.ArrayList;
 
