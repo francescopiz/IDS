@@ -1,6 +1,6 @@
 package com.unicam.IDS.models;
 
-import com.unicam.ingdelsoftware.models.ruoli.Utente;
+import com.unicam.IDS.models.ruoli.Utente;
 
 import java.util.ArrayList;
 import java.util.Date;

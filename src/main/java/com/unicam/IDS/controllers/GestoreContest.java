@@ -1,10 +1,10 @@
 package com.unicam.IDS.controllers;
 
-import com.unicam.ingdelsoftware.models.Contenuto;
+import com.unicam.IDS.models.approvabili.Contenuto;
 import com.unicam.IDS.models.Contest;
-import com.unicam.ingdelsoftware.models.Iscrizione;
-import com.unicam.ingdelsoftware.models.Liste;
-import com.unicam.ingdelsoftware.models.ruoli.Utente;
+import com.unicam.IDS.models.Iscrizione;
+import com.unicam.IDS.models.Liste;
+import com.unicam.IDS.models.ruoli.Utente;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class GestoreContest {
     }
 
 
-    public boolean addContest(String nome, String descrizione, Utente animatore){
+    /*public boolean addContest(String nome, String descrizione, Utente animatore){
         return repository.addContest(nome, descrizione, animatore);
     }
 
@@ -48,5 +48,5 @@ public class GestoreContest {
     public boolean decretaVincitoreContest (int idContest, Iscrizione iscrizione){
 
         return repository.getContest(idContest).setVincitore(iscrizione);
-    }
+    }*/
 }
