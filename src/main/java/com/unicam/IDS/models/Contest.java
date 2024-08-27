@@ -1,8 +1,9 @@
 package com.unicam.IDS.models;
 
-import com.unicam.IDS.models.ruoli.Utente;
+import com.unicam.ingdelsoftware.models.ruoli.Utente;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Contest {
@@ -11,9 +12,8 @@ public class Contest {
     private int id;
     private String nome;
     private Utente animatore;
-
-    private List<Integer> listaIscritti;   //TODO vedere se vogliamo modificarlo
-    private boolean privato;
+    private Iscrizione vincitore;
+    private List<Integer> utentiIscritti;
     private List<Integer> utentiAmmessi;
 
     Contest(int id, String nome, String descrizione, Utente animatore) {
@@ -21,35 +21,64 @@ public class Contest {
         this.nome = nome;
         this.descrizione = descrizione;
         this.animatore = animatore;
+        this.vincitore = null;
+        this.utentiIscritti = new ArrayList<>();
+        this.utentiAmmessi = new ArrayList<>();
     }
-
-    public boolean iscriviUtente(int idUtente){
-        if(listaIscritti.contains(idUtente))
-            return false;
-        if(privato)
-            if (!utentiAmmessi.contains(idUtente))
-                return false;
-        listaIscritti.add(idUtente);
-        return true;
+    Contest(int id, String nome, String descrizione, Utente animatore, List<Integer> utentiAmmessi){
+        this.id = id;
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.animatore = animatore;
+        this.vincitore = null;
+        this.utentiIscritti = new ArrayList<>();
+        this.utentiAmmessi = utentiAmmessi;
     }
 
     public List<Integer> getListaAmmessi(){
-        if (privato)
+        if (this.utentiAmmessi.size() > 0)
             return utentiAmmessi;
         return new ArrayList<>();
     }
 
 
+    public int getId() {
+        return id;
+    }
+
     public List<Integer> getListaIscritti(){
-        return listaIscritti;
+        return utentiIscritti;
     }
 
-    public boolean ContestPrivato(){
-        return privato;
+    public boolean contestPrivato(){
+        return this.utentiAmmessi.size() > 0;
     }
 
+    public Iscrizione getVincitore() {
+        return this.vincitore;
+    }
 
+    public boolean setVincitore(Iscrizione iscrizione){
+        this.vincitore = iscrizione;
+        return true;
+    }
+    
+    //TODO in qualche modo deve restituire false? I vari controlli sono fatti sul gestore, bisogna metterli lì o qui
+    public boolean iscriviUtente(int idUtente){
+        utentiIscritti.add(idUtente);
+        return true;
+    }
 
-
+    /**
+     * Metodo per vedere se un utente può iscriversi o meno a un contest
+     * @param utente
+     * @return true se l'utente può iscriversi
+     * @return false se non si può iscrivere (nel caso in cui il contest sia privato e non ci sta scritto il suo nome)
+     */
+    public boolean utenteAbilitato (Utente utente){
+        if(this.utentiAmmessi == null || this.utentiAmmessi.size() == 0)
+            return true;
+        return this.utentiAmmessi.contains(utente.getId());
+    }
 
 }

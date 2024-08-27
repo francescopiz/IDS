@@ -1,10 +1,10 @@
 package com.unicam.IDS.controllers;
 
-import com.unicam.IDS.models.approvabili.Contenuto;
+import com.unicam.ingdelsoftware.models.Contenuto;
 import com.unicam.IDS.models.Contest;
-import com.unicam.IDS.models.Iscrizione;
-import com.unicam.IDS.models.Liste;
-import com.unicam.IDS.models.ruoli.Utente;
+import com.unicam.ingdelsoftware.models.Iscrizione;
+import com.unicam.ingdelsoftware.models.Liste;
+import com.unicam.ingdelsoftware.models.ruoli.Utente;
 
 import java.util.List;
 
@@ -17,30 +17,36 @@ public class GestoreContest {
     }
 
 
-    public boolean creaContest(String nome, String descrizione, Utente animatore){
-        return true;
-                //Liste.creaContest(nome, descrizione, animatore);
+    public boolean addContest(String nome, String descrizione, Utente animatore){
+        return repository.addContest(nome, descrizione, animatore);
     }
 
-
+    public boolean removeContest (int idContest){
+        return repository.removeContest(idContest);
+    }
 
     public boolean iscriviti(int contestId, int utenteId, Contenuto contenuto) {
 
-        List<Iscrizione> iscrizioni = null;
-                //Liste.getListaIscrittiContest(contestId);
-        int id = -1;
-        for (Iscrizione iscr : iscrizioni) {
-            id = iscr.getIdUtente();
-            if (id == utenteId)
-                return false;
-        }
-        Contest contest = null;
-                //Liste.getContest();
+        Contest contest = repository.getContest(contestId);
         if (contest == null) {
             return false;
-            //Liste.addIscrizione(new Iscrizione(contestId, utenteId, contenuto));
         }
-        return true;
+            List<Integer> utentiIscritti = contest.getListaIscritti();
+            List<Integer> utentiAmmessi = contest.getListaAmmessi();
+            if(utentiIscritti.contains(utenteId))
+                return false;
+            if(utentiAmmessi.size() > 0)
+                if (!utentiAmmessi.contains(utenteId))
+                    return false;
+            Iscrizione iscrizione = new Iscrizione(contestId, utenteId, contenuto);
+            repository.addIscrizione(iscrizione);
+            contest.iscriviUtente(utenteId);
+
+            return true;
     }
 
+    public boolean decretaVincitoreContest (int idContest, Iscrizione iscrizione){
+
+        return repository.getContest(idContest).setVincitore(iscrizione);
+    }
 }
