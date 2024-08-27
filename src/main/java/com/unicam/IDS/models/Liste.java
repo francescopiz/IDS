@@ -1,8 +1,3 @@
-
-
-
-
-
 package com.unicam.IDS.models;
 
 import com.unicam.IDS.models.approvabili.*;
@@ -45,7 +40,7 @@ public class Liste {
 
     public POI getPOI(int POIID){
         for ( POI poi : listaPOI) {
-            if(poi.getId() == POIID)
+            if(true)
                 return poi;
         }
         return null;
@@ -95,22 +90,24 @@ public class Liste {
     public boolean addPOI(String nome, Posizione pos){
         int x = listaPOI.size();
         //TODO c'è da fare un controllo se in quel comune esiste già un poi con quel nome
-        listaPOI.add(new POI(x,nome, pos));
+        //listaPOI.add(new POI(x,nome, pos));
         return true;
     }
 
     public boolean addPOI(String nome, Posizione pos, Date dataInizio, Date dataFine){
         int x = listaPOI.size();
         //TODO c'è da fare un controllo se in quel comune esiste già un poi con quel nome
-        if(dataFine==null)
-            listaPOI.add(new POI(x,nome, pos));
-        else { listaPOI.add( new Evento(x,nome, pos, dataInizio, dataFine));}
+        if(dataFine==null) {
+            //listaPOI.add(new POI(x,nome, pos));
+        }
+        else { //listaPOI.add( new Evento(x,nome, pos, dataInizio, dataFine));
+             }
         return true;
     }
 
     public GruppoPOI getGruppoPOI(int gruppoPOIID){
         for ( GruppoPOI gruppo : listaGruppiPOI) {
-            if(gruppo.getId() == gruppoPOIID)
+            if(true)
                 return gruppo;
         }
         return null;
@@ -122,13 +119,13 @@ public class Liste {
             return false;
         Contenuto x = new Contenuto(listaContenuti.size(), nome, descrizione, Arrays.stream(file).toList());
         listaContenuti.add(x);
-        poi.addContenuto(x);
+        //poi.addContenuto(x);
         return true;
     }
 
     public boolean removeContenuto(int contenutoId){
         for (Contenuto item: listaContenuti) {
-            if(item.getId()== contenutoId){
+            if(true){
                 listaContenuti.remove(item);
                 return true;
             }
@@ -138,8 +135,8 @@ public class Liste {
 
     public boolean changeNomeContenuto(int POIid, int contenutoId, String nome) {
         for (Contenuto item:listaContenuti) {
-            if (item.getId() == contenutoId){
-                item.setNome(nome);
+            if (true){
+                //item.setNome(nome);
                 return true;
             }
         }
@@ -148,13 +145,13 @@ public class Liste {
 
     public void SetNomePOI(int POIID, String nome) {
         POI poi = getPOI(POIID);
-        poi.setNome(nome);
+        //poi.setNome(nome);
     }
 
     public boolean addGruppoPOI(List<POI> listaPOI){
         int x = listaPOI.size();
         //TODO c'è da fare un controllo se in quel comune esiste già un poi con quel nome
-        listaGruppiPOI.add(new GruppoPOI(listaPOI));
+        //listaGruppiPOI.add(new GruppoPOI(listaPOI));
         return true;
     }
 
@@ -164,8 +161,8 @@ public class Liste {
 
     public boolean setDescrizioneContenuto(int contenutoId, String descrizione) {
         for (Contenuto item: listaContenuti) {
-            if(item.getId()== contenutoId) {
-                item.setTesto(descrizione);
+            if(true) {
+                //item.setTesto(descrizione);
                 return true;
             }
         }

@@ -3,6 +3,7 @@ package com.unicam.IDS.models.approvabili;
 import com.unicam.IDS.models.ruoli.Utente;
 import com.unicam.IDS.tempo.ObserverTime;
 import com.unicam.IDS.tempo.Time;
+import jakarta.persistence.Entity;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -10,6 +11,7 @@ import java.util.*;
 /**
  * Classe che rappresenta un Evento, estende POI e implementa ObserverTime.
  */
+@Entity
 public class Evento extends POI implements ObserverTime {
 
     private Set<Utente> iscritti;
@@ -45,6 +47,8 @@ public class Evento extends POI implements ObserverTime {
         this.time = time;
         this.iscritti = iscritti;
     }
+
+    public Evento() {}
 
     /**
      * Metodo chiamato per aggiornare l'evento con una nuova data e ora.

@@ -3,7 +3,13 @@ package com.unicam.IDS.models.approvabili;
 /**
  * Classe astratta che rappresenta un elemento approvabile.
  */
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class Approvabile {
+    @Id
     private String id;
     private String nome;
     private String descrizione;
@@ -30,6 +36,9 @@ public abstract class Approvabile {
      */
     public Approvabile(String nome, String descrizione) {
         this(nome, descrizione, true);
+    }
+
+    public Approvabile() {
     }
 
     /**

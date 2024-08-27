@@ -1,5 +1,7 @@
 package com.unicam.IDS.models.approvabili;
 
+import jakarta.persistence.Entity;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 /**
  * Classe che rappresenta un Contenuto, estende Approvabile.
  */
+@Entity
 public class Contenuto extends Approvabile {
     private String nome;
     private String descrizione;
@@ -35,6 +38,9 @@ public class Contenuto extends Approvabile {
     public Contenuto(int id, String nome, String descrizione) {
         super(nome, descrizione);
         this.fileMultimediali = new ArrayList<>();
+    }
+
+    public Contenuto() {
     }
 
     /**

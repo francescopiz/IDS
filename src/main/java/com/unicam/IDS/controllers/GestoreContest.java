@@ -18,26 +18,29 @@ public class GestoreContest {
 
 
     public boolean creaContest(String nome, String descrizione, Utente animatore){
-        return Liste.creaContest(nome, descrizione, animatore);
+        return true;
+                //Liste.creaContest(nome, descrizione, animatore);
     }
 
 
 
     public boolean iscriviti(int contestId, int utenteId, Contenuto contenuto) {
 
-        List<Iscrizione> iscrizioni = Liste.getListaIscrittiContest(contestId);
+        List<Iscrizione> iscrizioni = null;
+                //Liste.getListaIscrittiContest(contestId);
         int id = -1;
         for (Iscrizione iscr : iscrizioni) {
             id = iscr.getIdUtente();
             if (id == utenteId)
                 return false;
         }
-        Contest contest = Liste.getContest();
+        Contest contest = null;
+                //Liste.getContest();
         if (contest == null) {
             return false;
-            Liste.addIscrizione(new Iscrizione(contestId, utenteId, contenuto));
-            return true;
+            //Liste.addIscrizione(new Iscrizione(contestId, utenteId, contenuto));
         }
+        return true;
     }
 
 }

@@ -41,15 +41,15 @@ public class GestorePOI {
         POI poi = liste.getPOI(POIId);
 
         Comune comune1 = liste.getComuneFromPosition(pos);
-        Comune comune2 = liste.getComuneFromPosition( poi.getPosizione());
-        if(comune1 == comune2)
+        //Comune comune2 = liste.getComuneFromPosition( poi.getPosizione());
+        if(true)
             throw new IllegalArgumentException();
         //poi.setPosizione(pos); // devo farlo fare alla repository
     }
 
     public boolean AddContenuto(int POIId, String nome, String descrizione, File[] file){
         POI poi = liste.getPOI(POIId);
-        List<Contenuto> listCont = poi.getElencoContenuti();
+        List<Contenuto> listCont = null;
         for (Contenuto item: listCont) {
             if(Objects.equals(item.getNome(), nome))
                 return false;
@@ -87,7 +87,8 @@ public class GestorePOI {
 
     public boolean SetNome(int POIId, String nome){
         POI poi = liste.getPOI(POIId);
-        Comune comune = liste.getComuneFromPosition(poi.getPosizione());
+        Comune comune = null;
+                //liste.getComuneFromPosition(poi.getPosizione());
         List<POI> listaPOIComune = liste.getPOIsFromComune(comune);
         if (listaPOIComune.stream().anyMatch(x -> x.getNome().equals(nome)))
             return false;

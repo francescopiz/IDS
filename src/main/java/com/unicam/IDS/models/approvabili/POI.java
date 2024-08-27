@@ -1,14 +1,17 @@
 package com.unicam.IDS.models.approvabili;
 
+import jakarta.persistence.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Classe che rappresenta un Punto di Interesse (POI).
  */
+@Entity
 public class POI extends Approvabile {
     private Posizione posizione;
-    private final List<Contenuto> elencoContenuti;
+    private List<Contenuto> elencoContenuti;
 
     /**
      * Costruttore per creare un POI con una lista di contenuti.
@@ -37,23 +40,26 @@ public class POI extends Approvabile {
         this.elencoContenuti = new ArrayList<>();
     }
 
+    public POI() {}
+
+
     /**
      * Restituisce la posizione del POI.
      *
      * @return la posizione del POI
      */
-    public Posizione getPosizione() {
+    /*public Posizione getPosizione() {
         return posizione;
-    }
+    }*/
 
     /**
      * Restituisce la lista dei contenuti del POI.
      *
      * @return la lista dei contenuti del POI
      */
-    public List<Contenuto> getElencoContenuti() {
+    /*public List<Contenuto> getElencoContenuti() {
         return elencoContenuti;
-    }
+    }*/
 
     /**
      * Restituisce il numero di contenuti del POI.
