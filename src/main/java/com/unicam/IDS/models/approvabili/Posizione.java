@@ -2,7 +2,7 @@ package com.unicam.IDS.models.approvabili;
 
 import java.util.Objects;
 
-public record Posizione(double x, double y) {
+public record Posizione(Double x, Double y) {
 
     /**
      * crea una posizione date le due dimensioni x e y
@@ -16,14 +16,14 @@ public record Posizione(double x, double y) {
     /**
      * @return coordinata x
      */
-    public double x() {
+    public Double x() {
         return this.x;
     }
 
     /**
      * @return coordinata y
      */
-    public double y() {
+    public Double y() {
         return this.y;
     }
 
