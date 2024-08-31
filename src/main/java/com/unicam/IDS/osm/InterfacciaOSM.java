@@ -1,4 +1,4 @@
-package com.unicam.IDS;
+package com.unicam.IDS.osm;
 
 import com.unicam.IDS.models.approvabili.Posizione;
 import org.json.JSONException;
