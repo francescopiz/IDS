@@ -3,7 +3,7 @@ package com.unicam.IDS.models.approvabili;
 import com.unicam.IDS.models.ruoli.Utente;
 import com.unicam.IDS.tempo.ObserverTime;
 import com.unicam.IDS.tempo.Time;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.*;

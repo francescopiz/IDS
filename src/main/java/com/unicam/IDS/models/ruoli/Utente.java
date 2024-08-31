@@ -1,14 +1,24 @@
 package com.unicam.IDS.models.ruoli;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Utente {
-    String userName;
+    @Id
+    @GeneratedValue
     int id;
+    String userName;
     String email;
 
     public Utente(String userName, int id, String email) {
-        this.userName = userName;
         this.id = id;
+        this.userName = userName;
         this.email=email;
+    }
+
+    public Utente() {
     }
 
     public String getNome() {

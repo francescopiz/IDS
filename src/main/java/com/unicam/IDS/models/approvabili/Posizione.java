@@ -1,7 +1,12 @@
 package com.unicam.IDS.models.approvabili;
 
+
+import jakarta.persistence.Embeddable;
+
 import java.util.Objects;
 
+@Embeddable
+public record Posizione(double x, double y) {
 public record Posizione(Double x, Double y) {
 
     /**

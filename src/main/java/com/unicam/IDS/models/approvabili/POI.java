@@ -1,7 +1,6 @@
 package com.unicam.IDS.models.approvabili;
 
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,11 @@ import java.util.List;
  */
 @Entity
 public class POI extends Approvabile {
+    @Embedded
     private Posizione posizione;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "poi_id")
     private List<Contenuto> elencoContenuti;
 
     /**
@@ -42,24 +45,23 @@ public class POI extends Approvabile {
 
     public POI() {}
 
-
     /**
      * Restituisce la posizione del POI.
      *
      * @return la posizione del POI
      */
-    /*public Posizione getPosizione() {
+    public Posizione getPosizione() {
         return posizione;
-    }*/
+    }
 
     /**
      * Restituisce la lista dei contenuti del POI.
      *
      * @return la lista dei contenuti del POI
      */
-    /*public List<Contenuto> getElencoContenuti() {
+    public List<Contenuto> getElencoContenuti() {
         return elencoContenuti;
-    }*/
+    }
 
     /**
      * Restituisce il numero di contenuti del POI.

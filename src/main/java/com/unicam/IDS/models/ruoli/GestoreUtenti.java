@@ -1,8 +1,6 @@
-package com.unicam.IDS.controllers;
+package com.unicam.IDS.models.ruoli;
 
-import com.unicam.IDS.models.Liste;
-import com.unicam.IDS.models.ruoli.RuoloInComune;
-import com.unicam.IDS.models.ruoli.Utente;
+import com.unicam.IDS.repositorys.UtentiRepository;
 
 
 public class GestoreUtenti {
@@ -10,36 +8,39 @@ public class GestoreUtenti {
     // Il gestore dei ruoli
     private final GestoreRuoli gestoreRuoli;
 
-    // La lista degli utenti
-    private Liste liste;
+    // La repository degli utenti
+    private UtentiRepository utentiRepository;
 
     /**
      * Costruttore per la classe GestoreUtenti.
-     * @param liste La lista degli utenti.
+     *
+     * @param utentiRepository La repository degli utenti.
      */
-    public GestoreUtenti(Liste liste) {
+    public GestoreUtenti(UtentiRepository utentiRepository) {
         gestoreRuoli = new GestoreRuoli();
-        this.liste = liste;
+        this.utentiRepository = utentiRepository;
     }
 
     /**
      * Aggiunge un utente alla lista.
+     *
      * @param utente L'utente da aggiungere.
      * @return true se l'utente è stato aggiunto con successo.
      */
-    public boolean aggiungiUtente(Utente utente) {
-        this.liste.addUtente(utente);
+    public boolean addUtente(Utente utente) {
+        this.utentiRepository.save(utente);
         return true;
     }
 
     /**
      * Rimuove un utente dalla lista.
+     *
      * @param utente L'utente da rimuovere.
      * @return true se l'utente è stato rimosso con successo, false altrimenti.
      */
-    public boolean rimuoviUtente(Utente utente) {
-        if(this.liste.getListaUtenti().contains(utente)) {
-            this.liste.removeUtente(utente.getId());
+    public boolean deleteUtente(Utente utente) {
+        if (this.utentiRepository.existsById(utente.getId())) {
+            this.utentiRepository.delete(utente);
             return true;
         }
         return false;
@@ -47,7 +48,8 @@ public class GestoreUtenti {
 
     /**
      * Imposta il ruolo di un utente.
-     * @param utente L'utente a cui impostare il ruolo.
+     *
+     * @param utente      L'utente a cui impostare il ruolo.
      * @param ruoloComune Il ruolo da impostare.
      * @return true se il ruolo è stato impostato con successo.
      */
@@ -56,18 +58,8 @@ public class GestoreUtenti {
     }
 
     /**
-     * Restituisce una rappresentazione in stringa dell'oggetto GestoreUtenti.
-     * @return Una rappresentazione in stringa dell'oggetto GestoreUtenti.
-     */
-    @Override
-    public String toString() {
-        return "GestoreUtenti{" +
-                "utenti=" + this.liste.getListaUtenti().size() +
-                '}';
-    }
-
-    /**
      * Restituisce il gestore dei ruoli.
+     *
      * @return Il gestore dei ruoli.
      */
     public GestoreRuoli getGestoreRuoli() {
@@ -76,13 +68,24 @@ public class GestoreUtenti {
 
     /**
      * Restituisce un utente in base al suo ID.
+     *
      * @param idUtente L'ID dell'utente.
      * @return L'utente con l'ID dato, o null se non esiste un utente con tale ID.
      */
     public Utente getUtenteById(int idUtente) {
-        if(this.liste.containsUtente(idUtente))
-            return liste.getUtente(idUtente);
-        return null;
+        return utentiRepository.findById(idUtente).orElse(null);
+    }
+
+    /**
+     * Restituisce una rappresentazione in stringa dell'oggetto GestoreUtenti.
+     *
+     * @return Una rappresentazione in stringa dell'oggetto GestoreUtenti.
+     */
+    @Override
+    public String toString() {
+        return "GestoreUtenti{" +
+                "utenti=" + this.utentiRepository.count() +
+                '}';
     }
 
 }

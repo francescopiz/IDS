@@ -1,40 +1,42 @@
 package com.unicam.IDS.models;
 
 import com.unicam.IDS.models.approvabili.Posizione;
-import com.unicam.IDS.controllers.Contesto;
+import jakarta.persistence.*;
 
+@Entity
 public class Comune {
-    private String nome;
+    @Id
+    @GeneratedValue
     private int id;
+    private String nome;
     private String provincia;
-    //private POI POIComune;
+    @Embedded
+    private Posizione posizioneComune;
 
-
-    // Se durante la creazione nel sistema
-    public Comune(String nome, int id, String provincia, Posizione posizione) {
+    public Comune(String nome, int id, String provincia, Posizione posizioneComune) {
         this.nome = nome;
         this.id = id;
         this.provincia = provincia;
-        /*this.POIComune =*/ Contesto.Gestore.GetGestorePOI().CreaPOI(nome, posizione); // TODO questo è il metodo che prende il singleton
+        this.posizioneComune = posizioneComune;
     }
-    public Comune(){}
+
+    public Comune() {}
+
     public int getId() {
         return id;
     }
+
     public String getNome() {
         return nome;
     }
+
     public String getProvincia() {
         return provincia;
     }
 
-    //public POI getPOIComune() {
-    //    return POIComune;
-    //}
-
-
-
-
+    public Posizione getPosizioneComune() {
+        return posizioneComune;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -42,13 +44,13 @@ public class Comune {
         if (!(o instanceof Comune comune)) return false;
         return id == comune.getId();
     }
+
     @Override
     public String toString() {
         return "Comune{" +
                 "nome='" + nome + '\'' +
                 ", provincia='" + provincia + '\'' +
                 ", id='" + id + '\'' +
-                //", " + POIComune.toString() +
                 '}';
     }
 }

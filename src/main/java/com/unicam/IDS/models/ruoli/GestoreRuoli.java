@@ -1,9 +1,6 @@
-package com.unicam.IDS.controllers;
+package com.unicam.IDS.models.ruoli;
 
-import com.unicam.IDS.models.ruoli.RuoloInComune;
-import com.unicam.IDS.models.ruoli.Utente;
 import com.unicam.IDS.models.Comune;
-import com.unicam.IDS.models.ruoli.Ruolo;
 
 import java.util.*;
 
