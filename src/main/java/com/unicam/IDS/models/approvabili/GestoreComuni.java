@@ -4,6 +4,7 @@ import com.unicam.IDS.models.Comune;
 import com.unicam.IDS.repositorys.ComuniRepository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class GestoreComuni {
 
@@ -38,5 +39,13 @@ public class GestoreComuni {
         }
         return false;
     }
+
+
+    public Comune getComuneDaNomeOSM(String nomeOSM){
+        Stream<Comune> comune = comuniRepository.findAll().stream().filter(x -> x.getNomeOSM().equals(nomeOSM));
+        return comune.findFirst().orElse(null);
+
+    }
+
 
 }
