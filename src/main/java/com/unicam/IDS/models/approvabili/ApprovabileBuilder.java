@@ -2,7 +2,7 @@ package com.unicam.IDS.models.approvabili;
 
 import com.unicam.IDS.models.approvabili.itinerario.Itinerario;
 import com.unicam.IDS.models.ruoli.Utente;
-import com.unicam.IDS.tempo.Time;
+import com.unicam.IDS.tempo.AbstractTime;
 
 import java.io.File;
 import java.util.*;
@@ -15,7 +15,7 @@ public class ApprovabileBuilder {
     private String descrizione;
     private String nome;
     private Optional<Posizione> posizione;
-    private Optional<Time> tempo;
+    private Optional<AbstractTime> tempo;
     private List<File> fileMultimediali;
     private List<POI> listaPOI;
     private List<Contenuto> elencoContenuti;
@@ -96,7 +96,7 @@ public class ApprovabileBuilder {
      * @return l'istanza corrente di ApprovabileBuilder
      * @throws IllegalArgumentException se il tempo è nullo
      */
-    public ApprovabileBuilder setTempo(Time tempo) {
+    public ApprovabileBuilder setTempo(AbstractTime tempo) {
         this.tempo = Optional.ofNullable(tempo);
         return this;
     }

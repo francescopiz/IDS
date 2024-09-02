@@ -21,6 +21,8 @@ public class Contest {
     @ManyToOne
     private Utente animatore;
 
+    private int idComune;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = false)
     private Set<Iscrizione> listaIscritti;
 
@@ -100,6 +102,24 @@ public class Contest {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Restituisce l'ID del comune.
+     *
+     * @return L'ID del comune.
+     */
+    public int getIdComune() {
+        return idComune;
+    }
+
+    /**
+     * Imposta l'ID del comune.
+     *
+     * @param idComune L'ID del comune.
+     */
+    public void setIdComune(int idComune) {
+        this.idComune = idComune;
     }
 
     /**

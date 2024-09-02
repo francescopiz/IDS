@@ -47,4 +47,3 @@ public class GestoreRichieste {
 
     //TODO toString
 }
-

@@ -5,15 +5,18 @@ package com.unicam.IDS.models.approvabili;
  */
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 public abstract class Approvabile {
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String nome;
     private String descrizione;
     protected boolean approvato;
+    private int idComune;
 
     /**
      * Costruttore con parametri per nome, descrizione e stato di approvazione.
@@ -26,6 +29,7 @@ public abstract class Approvabile {
         this.nome = nome;
         this.descrizione = descrizione;
         this.approvato = approvato;
+        this.idComune = 0;
     }
 
     /**
@@ -75,5 +79,17 @@ public abstract class Approvabile {
      */
     public String getDescrizione() {
         return descrizione;
+    }
+
+    public int getIdComune() {
+        return idComune;
+    }
+
+    public void setIdComune(int idComune) {
+        this.idComune = idComune;
+    }
+
+    public int getId() {
+        return id;
     }
 }

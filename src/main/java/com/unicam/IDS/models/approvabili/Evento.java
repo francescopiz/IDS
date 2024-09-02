@@ -1,6 +1,7 @@
 package com.unicam.IDS.models.approvabili;
 
 import com.unicam.IDS.models.ruoli.Utente;
+import com.unicam.IDS.tempo.AbstractTime;
 import com.unicam.IDS.tempo.ObserverTime;
 import com.unicam.IDS.tempo.Time;
 import jakarta.persistence.*;
@@ -14,8 +15,10 @@ import java.util.*;
 @Entity
 public class Evento extends POI implements ObserverTime {
 
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Utente> iscritti;
-    private Time time;
+    @OneToOne(cascade = CascadeType.ALL)
+    private AbstractTime time;
 
     /**
      * Costruttore per creare un Evento con una lista di contenuti e senza iscritti.
@@ -26,7 +29,7 @@ public class Evento extends POI implements ObserverTime {
      * @param time            il tempo dell'evento
      * @param elencoContenuti la lista dei contenuti dell'evento
      */
-    public Evento(String nome, String descrizione, Posizione posizione, Time time, List<Contenuto> elencoContenuti) {
+    public Evento(String nome, String descrizione, Posizione posizione, AbstractTime time, List<Contenuto> elencoContenuti) {
         super(nome, descrizione, posizione, elencoContenuti);
         this.time = time;
         this.iscritti = new HashSet<>();
@@ -42,13 +45,14 @@ public class Evento extends POI implements ObserverTime {
      * @param elencoContenuti la lista dei contenuti dell'evento
      * @param iscritti        il set degli iscritti all'evento
      */
-    public Evento(String nome, String descrizione, Posizione posizione, Time time, List<Contenuto> elencoContenuti, Set<Utente> iscritti) {
+    public Evento(String nome, String descrizione, Posizione posizione, AbstractTime time, List<Contenuto> elencoContenuti, Set<Utente> iscritti) {
         super(nome, descrizione, posizione, elencoContenuti);
         this.time = time;
         this.iscritti = iscritti;
     }
 
-    public Evento() {}
+    public Evento() {
+    }
 
     /**
      * Metodo chiamato per aggiornare l'evento con una nuova data e ora.
