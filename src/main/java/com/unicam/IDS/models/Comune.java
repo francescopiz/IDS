@@ -9,12 +9,14 @@ public class Comune {
     @GeneratedValue
     private int id;
     private String nome;
+    private String nomeOSM;
     private String provincia;
     @Embedded
     private Posizione posizioneComune;
 
-    public Comune(String nome, int id, String provincia, Posizione posizioneComune) {
+    public Comune(String nome, String nomeOSM, int id, String provincia, Posizione posizioneComune) {
         this.nome = nome;
+        this.nomeOSM = nomeOSM;
         this.id = id;
         this.provincia = provincia;
         this.posizioneComune = posizioneComune;
@@ -29,6 +31,7 @@ public class Comune {
     public String getNome() {
         return nome;
     }
+    public String getNomeOSM() { return  nomeOSM;}
 
     public String getProvincia() {
         return provincia;
@@ -53,4 +56,6 @@ public class Comune {
                 ", id='" + id + '\'' +
                 '}';
     }
+
+
 }

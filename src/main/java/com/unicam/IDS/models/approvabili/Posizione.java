@@ -6,7 +6,7 @@ import jakarta.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public record Posizione(Double x, Double y) {
+public record Posizione(double x, double y) {
 
     /**
      * crea una posizione date le due dimensioni x e y
@@ -20,14 +20,14 @@ public record Posizione(Double x, Double y) {
     /**
      * @return coordinata x
      */
-    public Double x() {
+    public double x() {
         return this.x;
     }
 
     /**
      * @return coordinata y
      */
-    public Double y() {
+    public double y() {
         return this.y;
     }
 
