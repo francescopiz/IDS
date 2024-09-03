@@ -1,4 +1,4 @@
 package com.unicam.IDS.dtos;
 
-public record ValutazioneDto (String id , boolean risposta) {
+public record ValutazioneDto (int idRichiesta, boolean approva) {
 }
