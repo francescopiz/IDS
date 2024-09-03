@@ -1,19 +1,18 @@
 package com.unicam.IDS.models.AnalizzatorePosizione;
 
 import com.unicam.IDS.models.Comune;
-import com.unicam.IDS.models.approvabili.GestoreComuni;
+import com.unicam.IDS.models.GestoreComuni;
 import com.unicam.IDS.models.approvabili.Posizione;
 import com.unicam.IDS.osm.InterfacciaOSM;
 import com.unicam.IDS.osm.ServizioOSM;
-import com.unicam.IDS.repositorys.ComuniRepository;
 import org.json.JSONObject;
 
 public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
 
-
     private InterfacciaOSM osm;
 
-    AnalizzatorePosizione(ServizioOSM osm) {
+
+    public AnalizzatorePosizione(ServizioOSM osm) {
         this.osm = osm;
 
     }
@@ -38,12 +37,7 @@ public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
         return false;
     }
 
-    /**
-     *  Questo metodo preso una posizione interroga OSM su quale sia il Comune corrispondente al punto dato, questo viene poi direttamente convertito nel comune corrispondente
-     *  nel nostro sistema.
-     * @param pos coordinata scelta
-     * @return L'oggetto comune del nostro sistema a cui appartiene il punto. NULL se non restituisce un comune o se non c'è corrispettivo esistente nel nostro sistema.
-     */
+
     public String getComuneDaPosizione(Posizione pos){
         JSONObject infoPunto = null;
         try {
@@ -54,11 +48,11 @@ public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
                 String city = infoPunto.getJSONObject("address").getString("city");
                 String town = infoPunto.getJSONObject("address").getString("town");
                 if (city != null)
-                    return GestoreComuni.instance.getComuneDaNomeOSM(city);
+                    return city;
                 if (town != null)
-                    return GestoreComuni.instance.getComuneDaNomeOSM(town);
+                    return town;
             } catch (Exception e){System.out.println("JSON ha lanciato un'eccezione");} //TODO metti logger anche qui
-
+        return "";
     }
 
 
