@@ -3,6 +3,7 @@ package com.unicam.IDS.models.approvabili;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Rappresenta un gruppo di POI non ordinato.
@@ -78,5 +79,17 @@ public class GruppoPOI extends Approvabile {
         return "GruppoPOI{" +
                 "listaPOI=" + listaPOI +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GruppoPOI gruppoPOI)) return false;
+        return (Objects.equals(listaPOI, gruppoPOI.listaPOI) && Objects.equals(getNome(), gruppoPOI.getNome()) && Objects.equals(getDescrizione(), gruppoPOI.getDescrizione()) );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome(), getDescrizione() ,listaPOI);
     }
 }

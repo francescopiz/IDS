@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -92,5 +93,18 @@ public class POI extends Approvabile {
     @Override
     public String toString() {
         return "POI: " + super.toString() + "\n" + "Posizione: " + posizione.toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof POI poi)) return false;
+        return Objects.equals(posizione, poi.posizione) && Objects.equals(elencoContenuti, poi.elencoContenuti) && Objects.equals(gruppoPOI, poi.gruppoPOI) && Objects.equals(getNome(), poi.getNome()) && Objects.equals(getDescrizione(), poi.getDescrizione());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome(), getDescrizione() , posizione, elencoContenuti, gruppoPOI);
     }
 }

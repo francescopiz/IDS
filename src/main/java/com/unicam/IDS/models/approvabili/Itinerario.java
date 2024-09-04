@@ -5,6 +5,7 @@ import com.unicam.IDS.models.approvabili.POI;
 import jakarta.persistence.Entity;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe che rappresenta un Itinerario, estende GruppoPOI.
@@ -40,4 +41,17 @@ public class Itinerario extends GruppoPOI {
                 ", listaPOI=" + listaPOI +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Itinerario itinerario)) return false;
+        return Objects.equals(getNome(), itinerario.getNome()) && Objects.equals(getDescrizione(), itinerario.getDescrizione()) && Objects.equals(listaPOI, itinerario.listaPOI);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode());
+    }
+
 }
