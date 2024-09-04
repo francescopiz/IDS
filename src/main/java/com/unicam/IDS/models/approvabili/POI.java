@@ -1,8 +1,10 @@
 package com.unicam.IDS.models.approvabili;
 
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Classe che rappresenta un Punto di Interesse (POI).
@@ -12,9 +14,11 @@ public class POI extends Approvabile {
     @Embedded
     private Posizione posizione;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "poi_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "poi")
     private List<Contenuto> elencoContenuti;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private GruppoPOI gruppoPOI;
 
     /**
      * Costruttore per creare un POI con una lista di contenuti.
@@ -23,11 +27,18 @@ public class POI extends Approvabile {
      * @param descrizione     la descrizione del POI
      * @param posizione       la posizione del POI
      * @param elencoContenuti la lista dei contenuti del POI
+     * @param gruppoPOI       il gruppo di appartenenza del POI
      */
+    public POI(String nome, String descrizione, Posizione posizione, List<Contenuto> elencoContenuti, GruppoPOI gruppoPOI) {
+        this(nome, descrizione, posizione, elencoContenuti);
+        this.gruppoPOI = gruppoPOI;
+    }
+
     public POI(String nome, String descrizione, Posizione posizione, List<Contenuto> elencoContenuti) {
         super(nome, descrizione);
         this.posizione = posizione;
         this.elencoContenuti = elencoContenuti;
+        this.gruppoPOI = null;
     }
 
     /**
@@ -43,7 +54,8 @@ public class POI extends Approvabile {
         this.elencoContenuti = new ArrayList<>();
     }
 
-    public POI() {}
+    public POI() {
+    }
 
     /**
      * Restituisce la posizione del POI.

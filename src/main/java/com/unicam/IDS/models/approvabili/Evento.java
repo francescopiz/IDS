@@ -19,6 +19,8 @@ public class Evento extends POI implements ObserverTime {
     @OneToOne(cascade = CascadeType.ALL)
     private AbstractTime time;
 
+    private boolean attivo;
+
     /**
      * Costruttore per creare un Evento con una lista di contenuti e senza iscritti.
      *
@@ -32,6 +34,7 @@ public class Evento extends POI implements ObserverTime {
         super(nome, descrizione, posizione, elencoContenuti);
         this.time = time;
         this.iscritti = new HashSet<>();
+        this.attivo = false;
     }
 
     /**
@@ -60,7 +63,14 @@ public class Evento extends POI implements ObserverTime {
      */
     @Override
     public void update(LocalDateTime dataOra) {
-        // Implementazione del metodo di aggiornamento
+        //TODO controlla
+        if (time.attivato(dataOra)) {
+            // L'evento è attivo
+            this.attivo = true;
+        } else {
+            //l'evento non è attivo
+            this.attivo = false;
+        }
     }
 
     /**
@@ -69,7 +79,7 @@ public class Evento extends POI implements ObserverTime {
      * @param utente l'utente da aggiungere
      * @return true se l'utente è stato aggiunto, false altrimenti
      */
-    public boolean iscrizione(Utente utente) {
+    public boolean addIscrizioneUtente(Utente utente) {
         return iscritti.add(utente);
     }
 
@@ -79,7 +89,7 @@ public class Evento extends POI implements ObserverTime {
      * @param utente l'utente da rimuovere
      * @return true se l'utente è stato rimosso, false altrimenti
      */
-    public boolean disiscrizione(Utente utente) {
+    public boolean deleteIscrizioneUtente(Utente utente) {
         return iscritti.remove(utente);
     }
 

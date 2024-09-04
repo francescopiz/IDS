@@ -4,18 +4,18 @@ package com.unicam.IDS.models.approvabili;
  * Classe astratta che rappresenta un elemento approvabile.
  */
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Approvabile {
     @Id
     @GeneratedValue
     private int id;
     private String nome;
     private String descrizione;
-    protected boolean approvato;
+    protected boolean visibile;
     private int idComune;
 
     /**
@@ -23,12 +23,12 @@ public abstract class Approvabile {
      *
      * @param nome        il nome dell'elemento approvabile
      * @param descrizione la descrizione dell'elemento approvabile
-     * @param approvato   lo stato di approvazione dell'elemento
+     * @param visibile   lo stato di approvazione dell'elemento
      */
-    public Approvabile(String nome, String descrizione, boolean approvato) {
+    public Approvabile(String nome, String descrizione, boolean visibile) {
         this.nome = nome;
         this.descrizione = descrizione;
-        this.approvato = approvato;
+        this.visibile = visibile;
         this.idComune = 0;
     }
 
@@ -50,8 +50,8 @@ public abstract class Approvabile {
      *
      * @param approvato il nuovo stato di approvazione
      */
-    public void setApprovato(boolean approvato) {
-        this.approvato = approvato;
+    public void setVisibile(boolean approvato) {
+        this.visibile = approvato;
     }
 
     /**
@@ -59,8 +59,8 @@ public abstract class Approvabile {
      *
      * @return true se l'elemento è approvato, false altrimenti
      */
-    public boolean isApprovato() {
-        return approvato;
+    public boolean isVisibile() {
+        return visibile;
     }
 
     /**

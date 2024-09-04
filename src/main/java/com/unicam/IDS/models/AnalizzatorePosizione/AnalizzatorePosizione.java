@@ -1,7 +1,6 @@
 package com.unicam.IDS.models.AnalizzatorePosizione;
 
 import com.unicam.IDS.models.Comune;
-import com.unicam.IDS.models.GestoreComuni;
 import com.unicam.IDS.models.approvabili.Posizione;
 import com.unicam.IDS.osm.InterfacciaOSM;
 import com.unicam.IDS.osm.ServizioOSM;

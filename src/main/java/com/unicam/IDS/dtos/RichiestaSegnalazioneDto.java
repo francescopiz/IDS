@@ -1,4 +1,4 @@
 package com.unicam.IDS.dtos;
 
-public record RichiestaSegnalazioneDto(int idApprovabile, String descrizione) {
+public record RichiestaSegnalazioneDto(String descrizione, int idApprovabile, int id ) {
 }

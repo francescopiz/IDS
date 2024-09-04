@@ -1,11 +1,16 @@
 package com.unicam.IDS.models.approvabili;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
 /**
  * Rappresenta un gruppo di POI non ordinato.
  */
+@Entity
 public class GruppoPOI extends Approvabile {
+
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "gruppoPOI")
     protected List<POI> listaPOI;
 
     /**
@@ -18,6 +23,10 @@ public class GruppoPOI extends Approvabile {
     public GruppoPOI(String nome, String descrizione, List<POI> listaPOI) {
         super(nome, descrizione);
         this.listaPOI = listaPOI;
+    }
+
+    public GruppoPOI() {
+
     }
 
     /**

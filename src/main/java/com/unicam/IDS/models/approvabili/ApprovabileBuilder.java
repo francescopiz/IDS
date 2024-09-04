@@ -1,43 +1,44 @@
 package com.unicam.IDS.models.approvabili;
 
-import com.unicam.IDS.models.approvabili.itinerario.Itinerario;
 import com.unicam.IDS.models.ruoli.Utente;
 import com.unicam.IDS.tempo.AbstractTime;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.*;
 
 /**
  * Classe Builder per creare istanze di Approvabile.
  */
 public class ApprovabileBuilder {
-    private final String id;
     private String descrizione;
     private String nome;
-    private Optional<Posizione> posizione;
-    private Optional<AbstractTime> tempo;
-    private List<File> fileMultimediali;
+    private Posizione posizione;
+    private AbstractTime tempo;
+    private List<MultipartFile> fileMultimediali;
     private List<POI> listaPOI;
-    private List<Contenuto> elencoContenuti;
+    private List<Contenuto> listaContenuti;
     private Set<Utente> iscritti;
-    private Optional<Boolean> approvato;
     private boolean isItinerario;
+    private POI poi;
 
     /**
      * Costruttore di default che inizializza il builder con valori di default.
      */
     public ApprovabileBuilder() {
-        this.id = "";
         this.nome = "";
         this.descrizione = "";
-        this.posizione = Optional.empty();
-        this.tempo = Optional.empty();
+        this.posizione = null;
+        this.tempo = null;
         this.fileMultimediali = new LinkedList<>();
         this.listaPOI = new LinkedList<>();
-        this.elencoContenuti = new LinkedList<>();
+        this.listaContenuti = new LinkedList<>();
         this.iscritti = new HashSet<>();
-        this.approvato = Optional.empty();
         this.isItinerario = false;
+    }
+
+    public ApprovabileBuilder setIsItinerario(boolean isItinerario) {
+        this.isItinerario = isItinerario;
+        return this;
     }
 
     /**
@@ -85,7 +86,7 @@ public class ApprovabileBuilder {
      * @return l'istanza corrente di ApprovabileBuilder
      */
     public ApprovabileBuilder setPosizione(Posizione posizione) {
-        this.posizione = Optional.ofNullable(posizione);
+        this.posizione = posizione;
         return this;
     }
 
@@ -97,7 +98,7 @@ public class ApprovabileBuilder {
      * @throws IllegalArgumentException se il tempo è nullo
      */
     public ApprovabileBuilder setTempo(AbstractTime tempo) {
-        this.tempo = Optional.ofNullable(tempo);
+        this.tempo = tempo;
         return this;
     }
 
@@ -108,10 +109,9 @@ public class ApprovabileBuilder {
      * @return l'istanza corrente di ApprovabileBuilder
      * @throws IllegalArgumentException se la collezione è nulla
      */
-    public ApprovabileBuilder addFileMultimediali(Collection<File> fileMultimediali) {
-        if (fileMultimediali == null)
-            throw new IllegalArgumentException("La lista di file non può essere nulla.");
-        this.fileMultimediali.addAll(fileMultimediali);
+    public ApprovabileBuilder addFileMultimediali(Collection<MultipartFile> fileMultimediali) {
+        if (fileMultimediali != null)
+            this.fileMultimediali.addAll(fileMultimediali);
         return this;
     }
 
@@ -122,7 +122,7 @@ public class ApprovabileBuilder {
      * @return l'istanza corrente di ApprovabileBuilder
      * @throws IllegalArgumentException se il file è nullo
      */
-    public ApprovabileBuilder addFileMultimediale(File file) {
+    public ApprovabileBuilder addFileMultimediale(MultipartFile file) {
         return addFileMultimediali(Collections.singletonList(file));
     }
 
@@ -145,9 +145,8 @@ public class ApprovabileBuilder {
      * @throws IllegalArgumentException se la collezione è nulla
      */
     public ApprovabileBuilder addListaPOI(Collection<POI> listaPOI) {
-        if (listaPOI == null)
-            throw new IllegalArgumentException("Il POI non può essere nullo.");
-        this.listaPOI.addAll(listaPOI);
+        if (listaPOI != null)
+            this.listaPOI.addAll(listaPOI);
         return this;
     }
 
@@ -170,9 +169,8 @@ public class ApprovabileBuilder {
      * @throws IllegalArgumentException se la collezione è nulla
      */
     public ApprovabileBuilder addElencoContenuti(Collection<Contenuto> elencoContenuti) {
-        if (elencoContenuti == null)
-            throw new IllegalArgumentException("L'elenco dei contenuti non può essere nullo.");
-        this.elencoContenuti.addAll(elencoContenuti);
+        if (elencoContenuti != null)
+            this.listaContenuti.addAll(elencoContenuti);
         return this;
     }
 
@@ -195,20 +193,13 @@ public class ApprovabileBuilder {
      * @throws IllegalArgumentException se la collezione è nulla
      */
     public ApprovabileBuilder addIscritti(Collection<Utente> iscritti) {
-        if (iscritti == null)
-            throw new IllegalArgumentException("L'iscritto non può essere nullo.");
-        this.iscritti.addAll(iscritti);
+        if (iscritti != null)
+            this.iscritti.addAll(iscritti);
         return this;
     }
 
-    /**
-     * Inserisce il valore di approvato.
-     *
-     * @param approvato il valore di approvato
-     * @return l'istanza corrente di ApprovabileBuilder
-     */
-    public ApprovabileBuilder setApprovato(boolean approvato) {
-        this.approvato = Optional.of(approvato);
+    public ApprovabileBuilder setPOI(POI poi) {
+        this.poi = poi;
         return this;
     }
 
@@ -222,15 +213,16 @@ public class ApprovabileBuilder {
         if (checkString(nome) || checkString(descrizione)) {
             throw new IllegalStateException("Nome o descrizione non impostati.");
         }
-        if (posizione.isEmpty()) {
-            return isItinerario ? new Itinerario(nome, descrizione, listaPOI) : new GruppoPOI(nome, descrizione, listaPOI);
-        } else {
-            if (tempo.isEmpty()) {
-                return new POI(nome, descrizione, posizione.get(), elencoContenuti);
-            } else {
-                return iscritti.isEmpty() ? new Evento(nome, descrizione, posizione.get(), tempo.get(), elencoContenuti) : new Evento(nome, descrizione, posizione.get(), tempo.get(), elencoContenuti, iscritti);
+        if (posizione == null) {
+            if (poi != null) {
+                return new Contenuto(nome, descrizione, fileMultimediali, poi);
             }
+            return isItinerario ? new Itinerario(nome, descrizione, listaPOI) : new GruppoPOI(nome, descrizione, listaPOI);
         }
+        if (tempo == null) {
+            return new POI(nome, descrizione, posizione, listaContenuti);
+        }
+        return iscritti.isEmpty() ? new Evento(nome, descrizione, posizione, tempo, listaContenuti) : new Evento(nome, descrizione, posizione, tempo, listaContenuti, iscritti);
     }
 
     /**

@@ -22,10 +22,7 @@ public class RichiestaSegnalazione extends Richiesta {
 
     @Override
     public void esegui(boolean approva) {
-        if (approva) {
-            //TODO
-        }
+        this.getApprovabile().setVisibile(!approva);
     }
 
-    //TODO implemente equals
 }

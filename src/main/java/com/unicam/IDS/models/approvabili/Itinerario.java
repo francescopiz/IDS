@@ -1,13 +1,15 @@
-package com.unicam.IDS.models.approvabili.itinerario;
+package com.unicam.IDS.models.approvabili;
 
 import com.unicam.IDS.models.approvabili.GruppoPOI;
 import com.unicam.IDS.models.approvabili.POI;
+import jakarta.persistence.Entity;
 
 import java.util.List;
 
 /**
  * Classe che rappresenta un Itinerario, estende GruppoPOI.
  */
+@Entity
 public class Itinerario extends GruppoPOI {
 
     /**
@@ -21,25 +23,8 @@ public class Itinerario extends GruppoPOI {
         super(nome, descrizione, listaPOI);
     }
 
-    /**
-     * Restituisce il primo POI dell'itinerario.
-     *
-     * @return il primo POI se presente, altrimenti null
-     */
-    public POI PuntoIniziale() {
-        if (listaPOI.size() > 0) {
-            return listaPOI.get(0);
-        }
-        return null;
-    }
+    public Itinerario() {
 
-    /**
-     * Crea e restituisce un iteratore per l'itinerario.
-     *
-     * @return un'istanza di ItinerarioIterator
-     */
-    public POIIterator createIterator() {
-        return new ItinerarioIterator(listaPOI);
     }
 
     /**

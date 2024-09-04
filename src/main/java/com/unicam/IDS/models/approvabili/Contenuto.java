@@ -12,17 +12,21 @@ public class Contenuto extends Approvabile {
     private String nome;
     private String descrizione;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private POI poi;
+
     @Transient
     private List<MultipartFile> fileMultimediali;
 
-    public Contenuto(int id, String nome, String descrizione, List<MultipartFile> fileMultimediali) {
+    public Contenuto(String nome, String descrizione, POI poi) {
         super(nome, descrizione);
-        this.fileMultimediali = fileMultimediali;
+        this.fileMultimediali = null;
+        this.poi = poi;
     }
 
-    public Contenuto(int id, String nome, String descrizione) {
-        super(nome, descrizione);
-        this.fileMultimediali = new ArrayList<>();
+    public Contenuto(String nome, String descrizione, List<MultipartFile> fileMultimediali, POI poi) {
+        this(nome, descrizione, poi);
+        this.fileMultimediali = fileMultimediali;
     }
 
     public Contenuto() {

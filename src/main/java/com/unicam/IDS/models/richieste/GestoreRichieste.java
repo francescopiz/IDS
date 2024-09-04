@@ -1,49 +1,59 @@
-
 package com.unicam.IDS.models.richieste;
 
 import com.unicam.IDS.repositorys.RichiesteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class GestoreRichieste {
 
     private final RichiesteRepository richiesteRepository;
-    private final int idComune;
 
-    public GestoreRichieste(RichiesteRepository richiesteRepository, int idComune) {
+    @Autowired
+    public GestoreRichieste(RichiesteRepository richiesteRepository) {
         this.richiesteRepository = richiesteRepository;
-        this.idComune = idComune;
     }
 
     public boolean addRichiesta(Richiesta richiesta) {
         if (richiesta == null || richiesteRepository.existsById(richiesta.getId())) return false;
-        richiesta.setIdComune(this.idComune);
-        this.richiesteRepository.save(richiesta);
+        richiesteRepository.save(richiesta);
         return true;
     }
 
     private boolean deleteRichiesta(Richiesta richiesta) {
         if (richiesta == null || !richiesteRepository.existsById(richiesta.getId())) return false;
-        this.richiesteRepository.delete(richiesta);
+        richiesteRepository.delete(richiesta);
         return true;
     }
 
-    public boolean getRichiestaById(int id) {
+    public boolean existRichiestaById(int id) {
         return richiesteRepository.existsById(id);
     }
 
     public boolean valutaRichiesta(Richiesta richiesta, boolean approva) {
-        if (this.richiesteRepository.existsById(richiesta.getId())) {
+        if (richiesteRepository.existsById(richiesta.getId())) {
             richiesteRepository.getReferenceById(richiesta.getId()).esegui(approva);
-            this.deleteRichiesta(richiesta);
+            deleteRichiesta(richiesta);
             return true;
         }
         return false;
     }
 
-    public List<Richiesta> getRichiesteComune() {
-        return richiesteRepository.findAll().stream().filter(richiesta -> richiesta.getIdComune() == this.idComune).toList();
+    public List<Richiesta> getRichiesteByComune(int idComune) {
+        return richiesteRepository.findAll().stream()
+                .filter(richiesta -> richiesta.getIdComune() == idComune)
+                .toList();
     }
 
-    //TODO toString
+    public Richiesta getRichiestaById(int id) {
+        return richiesteRepository.findById(id).orElse(null);
+    }
+
+    public Richiesta getRichiestaByIdApprovabile(int idApprovabile) {
+        return richiesteRepository.findAll().stream()
+                .filter(richiesta -> richiesta.getApprovabile().getId() == idApprovabile)
+                .findFirst().orElse(null);
+    }
 }

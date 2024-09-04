@@ -3,8 +3,9 @@ package com.unicam.IDS.models.richieste;
 import com.unicam.IDS.models.approvabili.Approvabile;
 import jakarta.persistence.Entity;
 
-//private GestoreComunale gestoreComunale;
-
+/**
+ * Questa classe rappresenta una richiesta di approvazione di un oggetto approvabile.
+ */
 @Entity
 public class RichiestaApprovabile extends Richiesta {
 
@@ -17,10 +18,8 @@ public class RichiestaApprovabile extends Richiesta {
 
     @Override
     public void esegui(boolean approva) {
-        if (approva) {
-            //TODO implementa
-        }
+        this.getApprovabile().setVisibile(approva);
     }
 
-    //TODO implementa equals e hashCode
+
 }

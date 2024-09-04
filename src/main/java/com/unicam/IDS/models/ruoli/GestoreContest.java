@@ -1,28 +1,27 @@
-package com.unicam.IDS;
+package com.unicam.IDS.models.ruoli;
 
 import com.unicam.IDS.models.Contest;
 import com.unicam.IDS.models.Iscrizione;
-import com.unicam.IDS.models.ruoli.Utente;
 import com.unicam.IDS.repositorys.ContestRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-
+@Component
 public class GestoreContest {
 
-    private final int idComune;
     private final ContestRepository contestRepository;
 
-    public GestoreContest(ContestRepository contestRepository, int idComune) {
+    @Autowired
+    public GestoreContest(ContestRepository contestRepository) {
         this.contestRepository = contestRepository;
-        this.idComune = idComune;
     }
 
 
     public boolean addContest(Contest contest) {
         try {
-            contest.setIdComune(idComune);
             contestRepository.save(contest);
             return true;
         } catch (Exception ignored) {
@@ -55,7 +54,10 @@ public class GestoreContest {
         return contest.setVincitore(iscrizione);
     }
 
-    public List<Contest> getContestComune() {
-        return contestRepository.findAll().stream().filter(contest -> contest.getIdComune() == this.idComune).toList();
+    public List<Contest> getContestByComune(int idComune) {
+        return contestRepository.findAll().stream().filter(contest -> contest.getIdComune() == idComune).toList();
+    }
+    public Contest getContestById(int id) {
+        return contestRepository.findById(id).orElse(null);
     }
 }
