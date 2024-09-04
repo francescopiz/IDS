@@ -27,9 +27,9 @@ public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
 
         try {
             if (infoPunto != null) {
-                if (infoPunto.getJSONObject("address").getString("city").equals(com.getNomeOSM()))
+                if (infoPunto.getJSONObject("address").getString("city").equals(com.getNome()))
                     return true;
-                if (infoPunto.getJSONObject("address").getString("town").equals(com.getNomeOSM()))
+                if (infoPunto.getJSONObject("address").getString("town").equals(com.getNome()))
                     return true;
             }
         }catch (Exception e) {System.out.println("JSON ha lanciato un'eccezione");} //TODO ricorda di gestirla
