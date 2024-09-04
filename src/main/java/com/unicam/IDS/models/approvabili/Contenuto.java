@@ -6,11 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Contenuto extends Approvabile {
-    private String nome;
-    private String descrizione;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private POI poi;
@@ -33,14 +33,6 @@ public class Contenuto extends Approvabile {
         this.fileMultimediali = new ArrayList<>();
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
-    }
-
     public List<MultipartFile> getFileMultimediali() {
         return fileMultimediali;
     }
@@ -48,9 +40,21 @@ public class Contenuto extends Approvabile {
     @Override
     public String toString() {
         return "Contenuto{" +
-                "nome='" + nome + '\'' +
-                ", descrizione='" + descrizione + '\'' +
+                "nome='" + getNome() + '\'' +
+                ", descrizione='" + getDescrizione() + '\'' +
                 ", fileMultimediali=" + fileMultimediali +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contenuto contenuto)) return false;
+        return Objects.equals(poi, contenuto.poi) && Objects.equals(fileMultimediali, contenuto.fileMultimediali) && Objects.equals(getNome(), contenuto.getNome()) && Objects.equals(getDescrizione(), contenuto.getDescrizione());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNome(), getDescrizione(), poi, fileMultimediali);
     }
 }

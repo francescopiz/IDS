@@ -115,4 +115,17 @@ public class Evento extends POI implements ObserverTime {
                 ", time=" + time +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Evento evento)) return false;
+        if (!super.equals(o)) return false;
+        return attivo == evento.attivo && Objects.equals(iscritti, evento.iscritti) && Objects.equals(time, evento.time) && Objects.equals(getNome(), evento.getNome()) && Objects.equals(getDescrizione(), evento.getDescrizione());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), iscritti, time, attivo);
+    }
 }
