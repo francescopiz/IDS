@@ -127,17 +127,6 @@ public class ApprovabileBuilder {
     }
 
     /**
-     * Aggiunge un singolo POI all'Approvabile.
-     *
-     * @param poi il POI da aggiungere
-     * @return l'istanza corrente di ApprovabileBuilder
-     * @throws IllegalArgumentException se il POI è nullo
-     */
-    public ApprovabileBuilder addPOI(POI poi) {
-        return addListaPOI(Collections.singletonList(poi));
-    }
-
-    /**
      * Aggiunge una collezione di POI all'Approvabile.
      *
      * @param listaPOI la collezione di POI da aggiungere

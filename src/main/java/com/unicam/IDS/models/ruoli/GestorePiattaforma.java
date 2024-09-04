@@ -5,21 +5,20 @@ import com.unicam.IDS.GestorePiattaformaBuilder;
 import com.unicam.IDS.models.Comune;
 import com.unicam.IDS.models.ruoli.GestoreComuni;
 import com.unicam.IDS.repositorys.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
 /**
  * Classe utilizzata per gestire la piattaforma.
  */
+@Component
 public class GestorePiattaforma {
 
     private static GestorePiattaforma instance = null;
 
     private final GestoreUtenti gestoreUtenti;
-
-    public GestoreComuni getGestoreComuni() {
-        return gestoreComuni;
-    }
 
     private final GestoreComuni gestoreComuni;
 
@@ -34,7 +33,7 @@ public class GestorePiattaforma {
 
     UtentiRepository utentiRepository;
 
-
+    @Autowired
     private GestorePiattaforma(GestorePiattaformaBuilder builder) {
         this.comuniRepository = builder.getComuniRepository();
         this.richiesteRepository = builder.getRichiesteRepository();
@@ -71,6 +70,10 @@ public class GestorePiattaforma {
      */
     public boolean aggiungiUtente(Utente utente) {
         return gestoreUtenti.addUtente(utente);
+    }
+
+    public GestoreComuni getGestoreComuni() {
+        return gestoreComuni;
     }
 
 

@@ -30,7 +30,7 @@ public class GestoreApprovabili {
                 .addIscritti(approvabileDto.iscritti()).setPosizione(approvabileDto.posizione())
                 .addListaPOI(approvabileDto.listaPOI()).addFileMultimediali(approvabileDto.listafileMultimediali())
                 .addElencoContenuti(approvabileDto.listaContenuti()).setTempo(approvabileDto.tempo())
-                .setIsItinerario(approvabileDto.isItinerario()).addPOI(approvabileDto.poi()).build();
+                .setIsItinerario(approvabileDto.isItinerario()).setPOI(approvabileDto.poi()).build();
         approvabileBuilder.reset();
         return approvabile;
     }
