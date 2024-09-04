@@ -1,11 +1,11 @@
 package com.unicam.IDS.tempo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-public abstract class AbstractTime implements Time {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
+public abstract class AbstractTime implements Tempo {
     @Id
     @GeneratedValue
     private int id;

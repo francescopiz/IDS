@@ -1,11 +1,12 @@
 package com.unicam.IDS.tempo;
 
 import java.time.LocalDateTime;
+import com.unicam.IDS.tempo.OrarioDiInizioFine;
 
 /**
  * Questa interfaccia rappresenta il tempo in cui è attivo un contenuto.
  */
-public interface Time {
+public interface Tempo {
 
     /**
      * Controlla se l'orario passato come parametro è compreso tra gli orari di inizio e fine.

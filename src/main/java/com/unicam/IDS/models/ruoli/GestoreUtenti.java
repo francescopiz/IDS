@@ -1,8 +1,14 @@
 package com.unicam.IDS.models.ruoli;
 
 import com.unicam.IDS.repositorys.UtentiRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+@Component
 public class GestoreUtenti {
 
     // Il gestore dei ruoli
@@ -16,6 +22,7 @@ public class GestoreUtenti {
      *
      * @param utentiRepository La repository degli utenti.
      */
+    @Autowired
     public GestoreUtenti(UtentiRepository utentiRepository) {
         gestoreRuoli = new GestoreRuoli();
         this.utentiRepository = utentiRepository;
@@ -64,6 +71,10 @@ public class GestoreUtenti {
      */
     public GestoreRuoli getGestoreRuoli() {
         return gestoreRuoli;
+    }
+
+    public Set<Utente> getUtenti() {
+        return new HashSet<>(utentiRepository.findAll());
     }
 
     /**

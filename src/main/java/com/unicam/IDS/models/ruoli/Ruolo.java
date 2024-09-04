@@ -4,14 +4,14 @@ package com.unicam.IDS.models.ruoli;
  * Enumerazione che rappresenta i ruoli che un utente può avere all'interno della piattaforma
  */
 public enum Ruolo {
+    TURISTA("TURISTA"),
+    TURISTA_AUTENTICATO("TURISTA_AUTENTICATO"),
     CONTRIBUTOR("CONTRIBUTOR"),
     CONTRIBUTOR_AUTORIZZATO("CONTRIBUTOR_AUTORIZZATO"),
-    //TURISTA("TURISTA"),
-    TURISTA_AUTENTICATO("TURISTA_AUTENTICATO"),
     ANIMATORE("ANIMATORE"),
     CURATORE("CURATORE"),
-    GESTORE_PIATTAFORMA("GESTORE_PIATTAFORMA"),
-    GESTORE_COMUNE("GESTORE_COMUNE");
+    GESTORE_COMUNALE("GESTORE_COMUNALE"),
+    GESTORE_PIATTAFORMA("GESTORE_PIATTAFORMA");
 
 
     public final String ruolo;

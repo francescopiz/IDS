@@ -1,12 +1,15 @@
 package com.unicam.IDS.models.ruoli;
 
 import com.unicam.IDS.models.Comune;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 /**
  * Si occupa della gestione dei ruoli implementando il singleton pattern
  */
+@Component
 public class GestoreRuoli {
 
     private final Map<Utente, Set<RuoloInComune>> mappaUtenteRuoliComune; // Mappa che associa utenti a insiemi di ruoli in comuni

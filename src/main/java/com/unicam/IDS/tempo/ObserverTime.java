@@ -9,7 +9,8 @@ public interface ObserverTime {
 
     /**
      * Aggiorna il tempo.
-     * @param dataOra data e ora correnti.
+     *
+     * @param now giorno e orario corrente.
      */
-    void update(LocalDateTime dataOra);
+    void update(LocalDateTime now);
 }

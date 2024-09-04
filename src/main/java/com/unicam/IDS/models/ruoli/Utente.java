@@ -9,20 +9,19 @@ public class Utente {
     @Id
     @GeneratedValue
     int id;
-    String userName;
+    String nome;
     String email;
 
-    public Utente(String userName, int id, String email) {
-        this.id = id;
-        this.userName = userName;
-        this.email=email;
+    public Utente(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
     }
 
     public Utente() {
     }
 
     public String getNome() {
-        return userName;
+        return nome;
     }
 
     public Integer getId() {
@@ -47,7 +46,7 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "userName: " + userName + "/ id: " + id + "/ email: " + email;
+        return "userName: " + nome + "/ id: " + id + "/ email: " + email;
     }
 
 }

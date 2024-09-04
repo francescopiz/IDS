@@ -1,8 +1,11 @@
 package com.unicam.IDS.tempo;
 
+import jakarta.persistence.Embeddable;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Embeddable
 public final class OrarioDiInizioFine implements Comparable<OrarioDiInizioFine> {
     private LocalDateTime inizio;
     private LocalDateTime fine;
