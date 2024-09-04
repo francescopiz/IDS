@@ -24,17 +24,20 @@ public class GestoreApprovabili {
         this.approvabiliRepository = approvabiliRepository;
     }
 
-    public Approvabile getApprovabileByApprovabileDto(ApprovabileDto approvabileDto){
+    public Approvabile getApprovabileByApprovabileDto(ApprovabileDto approvabileDto) {
         ApprovabileBuilder approvabileBuilder = new ApprovabileBuilder();
-        return approvabileBuilder.setNome(approvabileDto.nome()).setDescrizione(approvabileDto.descrizione())
+        Approvabile approvabile = approvabileBuilder.setNome(approvabileDto.nome()).setDescrizione(approvabileDto.descrizione())
                 .addIscritti(approvabileDto.iscritti()).setPosizione(approvabileDto.posizione())
                 .addListaPOI(approvabileDto.listaPOI()).addFileMultimediali(approvabileDto.listafileMultimediali())
                 .addElencoContenuti(approvabileDto.listaContenuti()).setTempo(approvabileDto.tempo())
                 .setIsItinerario(approvabileDto.isItinerario()).addPOI(approvabileDto.poi()).build();
+        approvabileBuilder.reset();
+        return approvabile;
     }
 
-    public boolean addApprovabile(Approvabile approvabile) {
+    public boolean addApprovabile(Approvabile approvabile, int idComune) {
         if (approvabile == null || existsApprovabileById(approvabile.getId())) return false;
+        approvabile.setIdComune(idComune);
         this.approvabiliRepository.save(approvabile);
         return true;
     }

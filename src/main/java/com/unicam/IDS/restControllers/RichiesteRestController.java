@@ -21,10 +21,10 @@ public class RichiesteRestController {
     }
 
     @PostMapping("/contenuti/addRichiestaApprovabile")
-    public ResponseEntity<Object> addRichiestaApprovabile(@RequestBody RichiestaApprovabileDto richiestaApprovabileDto) {
-        boolean response = controllerRichieste.addRichiestaApprovabile(richiestaApprovabileDto);
+    public ResponseEntity<Object> addRichiestaApprovabile(@PathParam("idComune") int idComune, @RequestBody RichiestaApprovabileDto richiestaApprovabileDto) {
+        boolean response = controllerRichieste.addRichiestaApprovabile(richiestaApprovabileDto, idComune);
         if (response)
-            return ResponseEntity.ok("Richiesta aggiunta correttamente");
+            return ResponseEntity.ok("RichiestaApprovabile aggiunta correttamente");
         else
             return ResponseEntity.badRequest().body("Errore nell'aggiunta della richiesta");
     }
@@ -34,9 +34,9 @@ public class RichiesteRestController {
         boolean response = controllerRichieste.addRichiestaSegnalazione(richiestaSegnalazioneDto.idApprovabile(),
                 richiestaSegnalazioneDto.descrizione());
         if (response)
-            return ResponseEntity.ok("Richiesta aggiunta correttamente");
+            return ResponseEntity.ok("Segnalazione aggiunta correttamente");
         else
-            return ResponseEntity.badRequest().body("Errore nell'aggiunta della richiesta");
+            return ResponseEntity.badRequest().body("Errore nell'aggiunta della segnalazione");
     }
 
     @PostMapping("/valuta")
@@ -52,6 +52,4 @@ public class RichiesteRestController {
     public ResponseEntity<Object> getRichiesteByComune(@PathParam("idComune") int idComune) {
         return ResponseEntity.ok(controllerRichieste.getRichiesteByComune(idComune));
     }
-
-
 }

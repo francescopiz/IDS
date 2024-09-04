@@ -29,7 +29,7 @@ public abstract class Approvabile {
         this.nome = nome;
         this.descrizione = descrizione;
         this.visibile = visibile;
-        this.idComune = 0;
+        this.idComune = -1;
     }
 
     /**

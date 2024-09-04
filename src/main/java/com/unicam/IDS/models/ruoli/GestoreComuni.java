@@ -3,9 +3,6 @@ package com.unicam.IDS.models.ruoli;
 
 import com.unicam.IDS.models.Comune;
 import com.unicam.IDS.models.richieste.GestoreRichieste;
-import com.unicam.IDS.models.ruoli.GestoreApprovabili;
-import com.unicam.IDS.models.ruoli.GestoreComunale;
-import com.unicam.IDS.models.ruoli.GestoreContest;
 import com.unicam.IDS.repositorys.ApprovabiliRepository;
 import com.unicam.IDS.repositorys.ComuniRepository;
 import com.unicam.IDS.repositorys.ContestRepository;
@@ -47,7 +44,7 @@ public class GestoreComuni {
         return comuniRepository.findAll();
     }
 
-    public Comune getComune(int idComune) {
+    public Comune getComuneById(int idComune) {
         return comuniRepository.findById(idComune).orElse(null);
     }
 
@@ -63,8 +60,8 @@ public class GestoreComuni {
         return new HashSet<>(comuniRepository.findAll());
     }
 
-    public GestoreComunale getGestoreComunaleByComune(Comune comune) {
-        return gestoriComunali.stream().filter(gc -> gc.getComune().equals(comune)).findFirst().orElse(null);
+    public GestoreComunale getGestoreComunaleByIdComune(int idComune) {
+        return gestoriComunali.stream().filter(gc -> gc.getComune().getId() == idComune).findFirst().orElse(null);
     }
 
     public Set<GestoreComunale> getGestoriComunali() {

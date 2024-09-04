@@ -25,9 +25,9 @@ public class ControllerRichieste {
         this.gestoreApprovabili = gestoreApprovabili;
     }
 
-    public boolean addRichiestaApprovabile(RichiestaApprovabileDto richiestaApprovabileDto) {
+    public boolean addRichiestaApprovabile(RichiestaApprovabileDto richiestaApprovabileDto, int idComune) {
         Approvabile approvabile = gestoreApprovabili.getApprovabileByApprovabileDto(richiestaApprovabileDto.approvabileDto());
-        this.gestoreApprovabili.addApprovabile(approvabile);
+        this.gestoreApprovabili.addApprovabile(approvabile, idComune);
         RichiestaApprovabile richiestaApprovabile = new RichiestaApprovabile(approvabile);
         richiestaApprovabile.getApprovabile().setVisibile(false);
         return addRichiesta(richiestaApprovabile);
