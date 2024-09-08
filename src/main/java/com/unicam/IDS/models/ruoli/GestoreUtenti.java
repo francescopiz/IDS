@@ -61,7 +61,11 @@ public class GestoreUtenti {
      * @return true se il ruolo è stato impostato con successo.
      */
     public boolean setRuoloUtente(Utente utente, RuoloInComune ruoloComune) {
-        return gestoreRuoli.conferisciRuoloComuneAUtente(utente, ruoloComune);
+        if (utente == null || ruoloComune == null) return false;
+        if (this.utentiRepository.existsById(utente.getId())) {
+            return gestoreRuoli.conferisciRuoloComuneAUtente(utente, ruoloComune);
+        }
+        return false;
     }
 
     /**

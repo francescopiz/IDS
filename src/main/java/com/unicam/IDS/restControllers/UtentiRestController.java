@@ -34,22 +34,22 @@ public class UtentiRestController {
     }
 
     @DeleteMapping("/deleteUtente")
-    public ResponseEntity<Object> rimuoviUtente(@PathParam("id") int id) {
-        boolean risultato = controllerUtenti.deleteUtente(id);
+    public ResponseEntity<Object> rimuoviUtente(@PathParam("idUtente") int idUtente) {
+        boolean risultato = controllerUtenti.deleteUtente(idUtente);
         if (risultato) return new ResponseEntity<>("Utente rimosso correttamente.", HttpStatus.OK);
         else return new ResponseEntity<>("Errore nella rimozione dell'utente.", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/setRuoloUtente")
-    public ResponseEntity<Object> setRuoloUtente(@PathParam("id") int id, @RequestBody RuoloComuneDto ruolo) {
-        boolean risultato = controllerUtenti.setRuoloUtente(id, new RuoloInComune(ruolo.comune(), ruolo.ruolo()));
+    public ResponseEntity<Object> setRuoloUtente(@PathParam("idUtente") int idUtente, @RequestBody RuoloComuneDto ruolo) {
+        boolean risultato = controllerUtenti.setRuoloUtente(idUtente, new RuoloInComune(ruolo.comune(), ruolo.ruolo()));
         if (risultato) return new ResponseEntity<>("Ruolo utente aggiornato correttamente.", HttpStatus.OK);
         else return new ResponseEntity<>("Errore nell'aggiornamento del ruolo utente.", HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getComuniAbilitati")
-    public ResponseEntity<Set<Comune>> getComuniAbilitati(@PathParam("id") int id, @PathParam("ruolo") Ruolo ruolo) {
-        return new ResponseEntity<>(controllerUtenti.getComuniConRuoloUtente(id, ruolo), HttpStatus.OK);
+    public ResponseEntity<Set<Comune>> getComuniAbilitati(@PathParam("idUtente") int idUtente, @PathParam("ruolo") Ruolo ruolo) {
+        return new ResponseEntity<>(controllerUtenti.getComuniConRuoloUtente(idUtente, ruolo), HttpStatus.OK);
     }
 
     @GetMapping("/getUtenti")
