@@ -4,7 +4,10 @@ import com.unicam.IDS.models.Comune;
 import com.unicam.IDS.models.approvabili.Posizione;
 import com.unicam.IDS.osm.InterfacciaOSM;
 import com.unicam.IDS.osm.ServizioOSM;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
 
@@ -17,44 +20,31 @@ public class AnalizzatorePosizione implements AnalizzatorePosizioneInterfaccia {
     }
 
 
+    @Override
+    public boolean isPosizioneInComune(Posizione posizione, Comune comune) {
+        String comuneDaPosizione = getComuneDaPosizione(posizione);
+        if (comuneDaPosizione == null || comuneDaPosizione.isEmpty()) {
+            return false;
+        }
+        return comuneDaPosizione.equalsIgnoreCase(comune.getNome().trim());
+    }
 
-    public boolean isPosizioneInComune(Posizione pos, Comune com){
-        JSONObject infoPunto = null;
+
+    @Override
+    public String getComuneDaPosizione(Posizione posizione) {
+        JSONObject risultatoChiamata = null;
         try {
-            infoPunto = new JSONObject(osm.getInfoPunto(pos));
-        } catch (Exception e) {System.out.println("OSM ha lanciato un'eccezione");}
-
-
-        try {
-            if (infoPunto != null) {
-                if (infoPunto.getJSONObject("address").getString("city").equals(com.getNome()))
-                    return true;
-                if (infoPunto.getJSONObject("address").getString("town").equals(com.getNome()))
-                    return true;
+            risultatoChiamata = new JSONObject(osm.getInfoPunto(posizione));
+            if (risultatoChiamata.has("address")) {
+                JSONObject address = risultatoChiamata.getJSONObject("address");
+                if (address.has("city")) return address.getString("city").trim();
+                if (address.has("town")) return address.getString("town").trim();
             }
-        }catch (Exception e) {System.out.println("JSON ha lanciato un'eccezione");} //TODO ricorda di gestirla
-        return false;
+            return "";
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            return "";
+        }
     }
-
-
-    public String getComuneDaPosizione(Posizione pos){
-        JSONObject infoPunto = null;
-        try {
-            infoPunto = new JSONObject(osm.getInfoPunto(pos));
-        } catch (Exception e) {System.out.println("OSM ha lanciato un'eccezione");}
-        if(infoPunto != null)
-            try {
-                String city = infoPunto.getJSONObject("address").getString("city");
-                String town = infoPunto.getJSONObject("address").getString("town");
-                if (city != null)
-                    return city;
-                if (town != null)
-                    return town;
-            } catch (Exception e){System.out.println("JSON ha lanciato un'eccezione");} //TODO metti logger anche qui
-        return "";
-    }
-
-
-
-
 }

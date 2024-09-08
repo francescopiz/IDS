@@ -5,7 +5,6 @@ import com.unicam.IDS.dtos.RuoloComuneDto;
 import com.unicam.IDS.dtos.UtenteDto;
 import com.unicam.IDS.models.Comune;
 import com.unicam.IDS.models.ruoli.Ruolo;
-import com.unicam.IDS.models.ruoli.RuoloInComune;
 import com.unicam.IDS.models.ruoli.Utente;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +40,9 @@ public class UtentiRestController {
     }
 
     @PostMapping("/setRuoloUtente")
-    public ResponseEntity<Object> setRuoloUtente(@PathParam("idUtente") int idUtente, @RequestBody RuoloComuneDto ruolo) {
-        boolean risultato = controllerUtenti.setRuoloUtente(idUtente, new RuoloInComune(ruolo.comune(), ruolo.ruolo()));
+    public ResponseEntity<Object> setRuoloUtente(@PathParam("idUtente") int idUtente, @RequestBody RuoloComuneDto ruoloInComune) {
+
+        boolean risultato = controllerUtenti.setRuoloUtente(idUtente, ruoloInComune.ruolo(), ruoloInComune.idCcomune());
         if (risultato) return new ResponseEntity<>("Ruolo utente aggiornato correttamente.", HttpStatus.OK);
         else return new ResponseEntity<>("Errore nell'aggiornamento del ruolo utente.", HttpStatus.BAD_REQUEST);
     }

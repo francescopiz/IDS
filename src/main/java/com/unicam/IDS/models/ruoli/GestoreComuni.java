@@ -23,6 +23,18 @@ public class GestoreComuni {
     private final GestoreRichieste gestoreRichieste;
     private final GestoreContest gestoreContest;
 
+    public GestoreApprovabili getGestoreApprovabili() {
+        return gestoreApprovabili;
+    }
+
+    public GestoreRichieste getGestoreRichieste() {
+        return gestoreRichieste;
+    }
+
+    public GestoreContest getGestoreContest() {
+        return gestoreContest;
+    }
+
     @Autowired
     public GestoreComuni(ComuniRepository comuniRepository, ApprovabiliRepository approvabiliRepository, RichiesteRepository richiesteRepository, ContestRepository contestRepository) {
         this.comuniRepository = comuniRepository;
@@ -33,9 +45,9 @@ public class GestoreComuni {
     }
 
     public boolean addComune(Comune comune) {
-        if (!comuniRepository.existsById(comune.getId())) {
-            this.comuniRepository.save(comune);
-            return gestoriComunali.add(new GestoreComunale(comuniRepository, gestoreApprovabili, gestoreRichieste, gestoreContest, comune));
+         if (!comuniRepository.existsById(comune.getId())) {
+            Comune newComune= this.comuniRepository.save(comune);
+            return gestoriComunali.add(new GestoreComunale(comuniRepository, gestoreApprovabili, gestoreRichieste, gestoreContest, newComune));
         }
         return false;
     }

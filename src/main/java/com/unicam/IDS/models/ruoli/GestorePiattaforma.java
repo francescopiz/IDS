@@ -3,7 +3,6 @@ package com.unicam.IDS.models.ruoli;
 
 import com.unicam.IDS.GestorePiattaformaBuilder;
 import com.unicam.IDS.models.Comune;
-import com.unicam.IDS.models.ruoli.GestoreComuni;
 import com.unicam.IDS.repositorys.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -62,29 +61,8 @@ public class GestorePiattaforma {
     }
 
 
-    /**
-     * Aggiunge un utente alla lista degli utenti
-     *
-     * @param utente l'utente da aggiungere
-     * @return true se l'utente è stato aggiunto, false altrimenti
-     */
-    public boolean aggiungiUtente(Utente utente) {
-        return gestoreUtenti.addUtente(utente);
-    }
-
     public GestoreComuni getGestoreComuni() {
         return gestoreComuni;
-    }
-
-
-    /**
-     * Aggiunge un comune alla lista dei comuni
-     *
-     * @param comune il comune da aggiungere
-     * @return true se il comune è stato aggiunto, false altrimenti
-     */
-    public boolean aggiungiComune(Comune comune) {
-        return gestoreComuni.addComune(comune);
     }
 
 
@@ -97,32 +75,9 @@ public class GestorePiattaforma {
     }
 
 
-    public Set<Comune> getComuni() {
-        return gestoreComuni.getComuni();
-    }
-
     public GestoreUtenti getGestoreUtenti() {
         return gestoreUtenti;
     }
 
-    public ComuniRepository getComuniRepository() {
-        return comuniRepository;
-    }
-
-    public RichiesteRepository getRichiesteRepository() {
-        return richiesteRepository;
-    }
-
-    public ApprovabiliRepository getContenutiRepository() {
-        return approvabiliRepository;
-    }
-
-    public ContestRepository getContestRepository() {
-        return contestRepository;
-    }
-
-    public UtentiRepository getUtentiRepository() {
-        return utentiRepository;
-    }
 
 }
